@@ -506,5 +506,9 @@
                 from { transform: translateX(100%); }
                 to { transform: translateX(0); }
             }
+            .medico-pedidos-pc-padre {
+                height: calc(100vh - 64px);
+                overflow-y: auto;
+            }
         }
 
