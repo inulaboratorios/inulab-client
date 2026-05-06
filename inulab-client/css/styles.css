@@ -510,5 +510,14 @@
                 height: calc(100vh - 64px);
                 overflow-y: auto;
             }
+
+            /* Fix fondo negro PDF cliente en desktop */
+            @media (min-width: 768px) {
+                .flex-1.w-full.rounded-xl.border.border-gray-200 {
+                background: white;
+                max-width: 900px;
+                margin: 0 auto;
+                }
+            }
         }
 
