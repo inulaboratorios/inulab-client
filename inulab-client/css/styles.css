@@ -511,12 +511,16 @@
                 overflow-y: auto;
             }
 
-            /* Fix fondo negro PDF cliente en desktop */
             @media (min-width: 768px) {
-                .flex-1.w-full.rounded-xl.border.border-gray-200 {
-                background: white;
+                .pdf-cliente-wrapper {
+                background: #f3f4f6;
+                align-items: center;
+                padding: 20px;
+                }
+
+                .pdf-cliente-wrapper iframe {
                 max-width: 900px;
-                margin: 0 auto;
+                background: white;
                 }
             }
         }
