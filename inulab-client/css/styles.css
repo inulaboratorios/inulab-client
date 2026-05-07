@@ -766,3 +766,5 @@ body {
 
 .pdf-cliente-wrapper { background: white; }
 @media (min-width: 768px) { .app-content-wrapper, body { background: white !important; } }
+
+@media (min-width: 768px) { .pdf-active { background: white !important; } html { background: white !important; } }
