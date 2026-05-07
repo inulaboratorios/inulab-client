@@ -770,3 +770,5 @@ body {
 @media (min-width: 768px) { .pdf-active { background: white !important; } html { background: white !important; } }
 
 html, body { background-color: white !important; }
+
+.pdf-cliente-wrapper iframe { clip-path: inset(0 0 60px 0); }
