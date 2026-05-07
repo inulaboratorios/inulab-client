@@ -772,3 +772,6 @@ body {
 html, body { background-color: white !important; }
 
 .pdf-cliente-wrapper iframe { clip-path: inset(0 0 60px 0); }
+
+.pdf-cliente-wrapper { overflow: hidden; }
+.pdf-cliente-wrapper iframe { height: calc(100% + 60px) !important; margin-bottom: -60px; }
