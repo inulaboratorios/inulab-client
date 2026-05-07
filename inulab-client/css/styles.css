@@ -763,3 +763,6 @@ body {
         background: #f3f4f6 !important;
     }
 }
+
+.pdf-cliente-wrapper { background: white; }
+@media (min-width: 768px) { .app-content-wrapper, body { background: white !important; } }
