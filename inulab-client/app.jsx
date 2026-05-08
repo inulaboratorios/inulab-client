@@ -2639,7 +2639,7 @@ const PdfViewer = ({ url, style, className }) => {
 
             // Selección de mascota y dirección (solo móvil o usuarios no médicos)
             if (currentExamForPet && freshUser.type !== 'medico' && freshUser.type !== 'dueño') {
-                const userAddresses = freshUser.addresses || [];
+                const userAddresses = database.addresses || [];
                 
                 const backHandler = () => { 
                     if (showAddressSelection && !showNewAddressForm) { setShowAddressSelection(false); setSelectedPetForOrder(null); }
@@ -6262,7 +6262,7 @@ const PdfViewer = ({ url, style, className }) => {
                         
                         {/* === Vista Selección de Mascota/Dirección (inline) === */}
                         {!viewingOrderTracking && !selectedPet && currentExamForPet && (() => {
-                            const userAddresses = freshUser.addresses || [];
+                            const userAddresses = database.addresses || [];
                             const backHandler = () => { 
                                 setSelSearchOpen(false); setSelSearchTerm('');
                                 if (showTomaMuestraStep) { setShowTomaMuestraStep(false); setPendingOrderAddress(null); }
