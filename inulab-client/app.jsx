@@ -2127,7 +2127,7 @@ const PdfViewer = ({ url, style, className }) => {
                                 <button onClick={() => setViewingInvoice(null)} className="w-9 h-9 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 flex-shrink-0">
                                     <i className="fas fa-arrow-left text-sm"></i>
                                 </button>
-                                <img src="logo_inulaboratorios.jpg" alt="Logo" className="h-7" onError={(e) => e.target.style.display = 'none'} />
+                                <img src="assets/logo_inulaboratorios.jpg" alt="Logo" className="h-7" onError={(e) => e.target.style.display = 'none'} />
                                 <div className="flex-1 min-w-0">
                                     <p className="text-sm font-bold text-gray-800 leading-tight">{docType}</p>
                                     <p className="text-gray-400 text-xs">{new Date(viewingInvoice.completedAt || viewingInvoice.date).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
@@ -2363,7 +2363,7 @@ const PdfViewer = ({ url, style, className }) => {
                 <div className="lg:hidden mob-header">
                     <div className="mob-header-inner">
                         <div className="mob-header-logo cursor-pointer" onClick={() => { resetDuenoState(); setActiveTab('pedidos'); }}>
-                            <img src="logo_inulaboratorios.jpg" alt="INULAB" className="h-8" onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }} />
+                            <img src="assets/logo_inulaboratorios.jpg" alt="INULAB" className="h-8" onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }} />
                             <div className="hidden w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg items-center justify-center text-white font-bold text-sm">I</div>
                         </div>
                         <span className="mob-header-title">{freshUser.name}</span>
@@ -2382,7 +2382,7 @@ const PdfViewer = ({ url, style, className }) => {
                 <div className="hidden lg:block bg-white border-b border-gray-200 px-6 py-3 fixed top-0 left-0 right-0 z-50">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2 cursor-pointer" onClick={() => { resetDuenoState(); setActiveTab('pedidos'); }}>
-                            <img src="logo_inulaboratorios.jpg" alt="Logo" className="h-8" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
+                            <img src="assets/logo_inulaboratorios.jpg" alt="Logo" className="h-8" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
                             <div className="hidden w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl items-center justify-center text-white font-bold">I</div>
                             <span className="text-base font-light text-gray-700 tracking-wide">INULABORATORIOS</span>
                         </div>
@@ -2523,7 +2523,7 @@ const PdfViewer = ({ url, style, className }) => {
                                             <button onClick={() => setViewingOrderTracking(null)} className="text-gray-600 hover:text-gray-800">
                                                 <i className="fas fa-arrow-left text-lg"></i>
                                             </button>
-                                            <img src="logo_inulaboratorios.jpg" alt="Logo" className="h-10" onError={(e) => { e.target.style.display = 'none'; }} />
+                                            <img src="assets/logo_inulaboratorios.jpg" alt="Logo" className="h-10" onError={(e) => { e.target.style.display = 'none'; }} />
                                         </div>
                                         <div className="flex items-center gap-3">
                                             <div className="text-right">
@@ -2637,7 +2637,7 @@ const PdfViewer = ({ url, style, className }) => {
             if (selectedPet && activeTab === 'resultados' && freshUser.type !== 'dueño') {
                 const currentPet = petsOrPatients.find(p => p.id === selectedPet.id) || selectedPet;
                 const petProfileContent = (<div><button onClick={() => setSelectedPet(null)} className="flex items-center gap-2 text-gray-600 hover:text-gray-800 mb-4"><i className="fas fa-arrow-left"></i><span className="text-sm font-medium">Volver a mascotas</span></button><div className="bg-white rounded-2xl shadow-lg p-6 mb-6"><div className="flex items-center gap-4"><div className="text-5xl">{currentPet.photo}</div><div><h1 className="text-2xl font-bold text-gray-800">{getPetFullName(currentPet)}</h1><div className="flex flex-wrap gap-2 mt-2"><span className="bg-cyan-100 text-cyan-700 px-2 py-0.5 rounded-full text-xs">{currentPet.breed}</span><span className="bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full text-xs">{formatAge(currentPet)}</span><span className="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full text-xs">{currentPet.sex}</span></div></div></div></div><h2 className="text-lg font-bold text-gray-800 mb-4">Resultados</h2>{currentPet.exams.length === 0 ? <div className="bg-white rounded-2xl p-10 text-center shadow"><i className="fas fa-folder-open text-4xl text-gray-300 mb-2"></i><p className="text-gray-500">No hay resultados disponibles</p></div> : <div className="space-y-3">{currentPet.exams.map(exam => (<div key={exam.id} onClick={() => markExamAsSeen(exam, currentPet)} className={`bg-white rounded-xl p-4 shadow cursor-pointer hover:shadow-lg flex items-center justify-between ${exam.seen === false ? 'border-l-4 border-red-500' : ''}`}><div className="flex items-center gap-3"><div className={`w-10 h-10 rounded-xl flex items-center justify-center ${exam.seen === false ? 'bg-red-100' : 'bg-cyan-100'}`}><i className={`fas fa-file-pdf ${exam.seen === false ? 'text-red-600' : 'text-cyan-600'}`}></i></div><div><p className="font-semibold text-gray-800">{exam.type}</p><p className="text-xs text-gray-500">{new Date(exam.date).toLocaleDateString('es-ES')}</p></div>{exam.seen === false && <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-bold ml-2">NUEVO</span>}</div><i className="fas fa-chevron-right text-gray-400"></i></div>))}</div>}</div>);
-                return (<div className="min-h-screen bg-gray-100"><div className="bg-white border-b px-4 py-3"><div className="max-w-4xl mx-auto flex items-center justify-between"><div className="flex items-center gap-3"><button onClick={() => setSelectedPet(null)} className="text-gray-600"><i className="fas fa-arrow-left"></i></button><img src="logo_inulaboratorios.jpg" alt="Logo" className="h-8" onError={(e) => e.target.style.display = 'none'} /></div><button onClick={() => { setSelectedPet(null); setDuenoView('config'); }} className="w-9 h-9 bg-cyan-50 rounded-xl flex items-center justify-center text-cyan-600"><i className="fas fa-cog"></i></button></div></div><div className="p-4 max-w-4xl mx-auto">{petProfileContent}</div></div>);
+                return (<div className="min-h-screen bg-gray-100"><div className="bg-white border-b px-4 py-3"><div className="max-w-4xl mx-auto flex items-center justify-between"><div className="flex items-center gap-3"><button onClick={() => setSelectedPet(null)} className="text-gray-600"><i className="fas fa-arrow-left"></i></button><img src="assets/logo_inulaboratorios.jpg" alt="Logo" className="h-8" onError={(e) => e.target.style.display = 'none'} /></div><button onClick={() => { setSelectedPet(null); setDuenoView('config'); }} className="w-9 h-9 bg-cyan-50 rounded-xl flex items-center justify-center text-cyan-600"><i className="fas fa-cog"></i></button></div></div><div className="p-4 max-w-4xl mx-auto">{petProfileContent}</div></div>);
             }
 
             // Selección de mascota y dirección (solo móvil o usuarios no médicos)
@@ -2899,7 +2899,7 @@ const PdfViewer = ({ url, style, className }) => {
                     </div>
                 );
                 
-                return (<div className="min-h-screen bg-gray-100"><div className="bg-white border-b px-4 py-3"><div className="max-w-4xl mx-auto flex items-center gap-4"><button onClick={backHandler} className="text-gray-600"><i className="fas fa-arrow-left"></i></button><img src="logo_inulaboratorios.jpg" alt="Logo" className="h-8" onError={(e) => e.target.style.display = 'none'} /></div></div>{selectionBody}</div>);
+                return (<div className="min-h-screen bg-gray-100"><div className="bg-white border-b px-4 py-3"><div className="max-w-4xl mx-auto flex items-center gap-4"><button onClick={backHandler} className="text-gray-600"><i className="fas fa-arrow-left"></i></button><img src="assets/logo_inulaboratorios.jpg" alt="Logo" className="h-8" onError={(e) => e.target.style.display = 'none'} /></div></div>{selectionBody}</div>);
             }
 
             // VISTA PRINCIPAL
@@ -2939,7 +2939,7 @@ const PdfViewer = ({ url, style, className }) => {
                             <div className="mob-header">
                                 <div className="mob-header-inner">
                                     <div className="mob-header-logo cursor-pointer" onClick={() => { setMedicoView('inicio'); setShowAllPending(false); setSelectedMascota(null); setMenuOpen(false); setSelectedExam(null); setViewingInvoice(null); setCurrentExamForPet(null); setShowNewPetForm(false); setShowAddressSelection(false); setShowNewAddressForm(false); setSelectedPetForOrder(null); setShowEditProfile(false); setViewingOrderTracking(null); setShowOrderSummary(false); setShowTermsModal(false); setClinPedidosSearchOpen(false); setClinMascSearchOpen(false); setClinResSearchOpen(false); setClinFacSearchOpen(false); setClinMascDetailSearchOpen(false); }}>
-                                        <img src="logo_inulaboratorios.jpg" alt="INULAB" className="h-8" onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }} />
+                                        <img src="assets/logo_inulaboratorios.jpg" alt="INULAB" className="h-8" onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }} />
                                         <div className="hidden w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg items-center justify-center text-white font-bold text-sm">I</div>
                                     </div>
                                     <span className="mob-header-title">{freshUser.name}</span>
@@ -4408,7 +4408,7 @@ const PdfViewer = ({ url, style, className }) => {
                                 <div className="flex items-center justify-between">
                                     {/* Logo a la izquierda */}
                                     <div className="flex items-center gap-2 cursor-pointer ml-[-10px]" onClick={() => { setMedicoView('inicio'); setSelectedMascota(null); setSelectedExam(null); setViewingInvoice(null); setCurrentExamForPet(null); setShowNewPetForm(false); setShowAddressSelection(false); setShowNewAddressForm(false); setSelectedPetForOrder(null); setShowEditProfile(false); setViewingOrderTracking(null); setMedicoFacInvoice(null); }}>
-                                        <img src="logo_inulaboratorios.jpg" alt="Logo" className="h-8" onError={(e) => { e.target.style.display = 'none'; }} />
+                                        <img src="assets/logo_inulaboratorios.jpg" alt="Logo" className="h-8" onError={(e) => { e.target.style.display = 'none'; }} />
                                         <span className="text-base font-light text-gray-700 tracking-wide">INULABORATORIOS</span>
                                     </div>
                                     
