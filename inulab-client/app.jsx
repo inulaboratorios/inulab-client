@@ -547,7 +547,7 @@
         // Configurar BASE_URL según el entorno del backend
         // =============================================================================
         // Configurar BASE_URL según el entorno del backend
-        const API_BASE = "https://inulab-backend-production.up.railway.app/api";
+        const API_BASE = "https://inulab-backend-production-99d1.up.railway.app/api";
 
         async function cargarPreciosDesdeAPI() {
             try {
@@ -852,7 +852,7 @@ const PdfViewer = ({ url, style, className }) => {
             <p className="text-sm">Cargando PDF...</p>
         </div>
     );
-    return <iframe src={blobUrl + '#toolbar=0&navpanes=0'} style={style} className={className} title="PDF" />;
+    return <iframe src={blobUrl + '#toolbar=0&navpanes=0&pagemode=none&view=FitH'} style={{...style, background:'white'}} className={className} title="PDF" />;
 };
 
         const App = () => {
@@ -1288,12 +1288,12 @@ const PdfViewer = ({ url, style, className }) => {
                         const orders = (ordersResponse || []).map(o => ({
                             id: o.id, userId: o.userId, userName: o.userName || '', comment: o.comment || '',
                             createdAt: o.createdAt, completedAt: o.completedAt, documentType: o.documentType || 'boleta',
-                            invoicePdf: o.invoicePdfUrl ? `https://inulab-backend-production.up.railway.app${o.invoicePdfUrl}` : null,
+                            invoicePdf: o.invoicePdfUrl ? `https://inulab-backend-production-99d1.up.railway.app${o.invoicePdfUrl}` : null,
                             invoicePdfUrl: o.invoicePdfUrl || null, invoiceStatus: o.invoicePdfUrl ? 'uploaded' : 'pending',
                             status: statusMap[Number(o.status)] || 'pending', addressId: o.addressId,
                             items: (o.items || []).map(item => {
                                 const rawPdf = item.pdfUrl || o.resultPdfUrl || null;
-                                const orderResultPdf = rawPdf ? (rawPdf.startsWith('http') ? rawPdf : `https://inulab-backend-production.up.railway.app${rawPdf}`) : null;
+                                const orderResultPdf = rawPdf ? (rawPdf.startsWith('http') ? rawPdf : `https://inulab-backend-production-99d1.up.railway.app${rawPdf}`) : null;
                                 return { examName: String(item.examName || ''), exam: { name: String(item.examName || ''), icon: 'fa-vial', color: 'text-cyan-600', bg: 'bg-cyan-100' }, pet: { name: String(item.petName || ''), photo: item.petPhoto || '🐾' }, address: { address: String(item.addressStreet || ''), district: String(item.addressDistrict || '') }, pdfData: orderResultPdf };
                             })
                         }));
@@ -1398,7 +1398,7 @@ const PdfViewer = ({ url, style, className }) => {
                             type: e.type || e.examName || 'Examen',
                             date: e.date,
                             seen: true,
-                            pdfData: e.pdfUrl ? (e.pdfUrl.startsWith('http') ? e.pdfUrl : 'https://inulab-backend-production.up.railway.app' + e.pdfUrl) : null
+                            pdfData: e.pdfUrl ? (e.pdfUrl.startsWith('http') ? e.pdfUrl : 'https://inulab-backend-production-99d1.up.railway.app' + e.pdfUrl) : null
                         }))
                     }));
                     console.log("pets OK", pets);
@@ -1415,7 +1415,7 @@ const PdfViewer = ({ url, style, className }) => {
                         createdAt: o.createdAt,
                         completedAt: o.completedAt,
                         documentType: o.documentType || 'boleta',
-                        invoicePdf: o.invoicePdfUrl ? `https://inulab-backend-production.up.railway.app${o.invoicePdfUrl}` : null,
+                        invoicePdf: o.invoicePdfUrl ? `https://inulab-backend-production-99d1.up.railway.app${o.invoicePdfUrl}` : null,
                         invoicePdfUrl: o.invoicePdfUrl || null,
                         invoiceStatus: o.invoicePdfUrl ? 'uploaded' : 'pending',
                         status: statusMap[Number(o.status)] || 'pending',
@@ -1424,7 +1424,7 @@ const PdfViewer = ({ url, style, className }) => {
                         items: (o.items || []).map(item => {
                             const rawPdf = item.pdfUrl || o.resultPdfUrl || null;
                             const orderResultPdf = rawPdf
-                                ? (rawPdf.startsWith('http') ? rawPdf : `https://inulab-backend-production.up.railway.app${rawPdf}`)
+                                ? (rawPdf.startsWith('http') ? rawPdf : `https://inulab-backend-production-99d1.up.railway.app${rawPdf}`)
                                 : null;
                             return {
                                 examName: String(item.examName || ''),
@@ -1460,7 +1460,7 @@ const PdfViewer = ({ url, style, className }) => {
                             );
                             const rawUrl = matchingOrder?.resultPdfUrl || null;
                             const pdfUrl = rawUrl
-                                ? (rawUrl.startsWith('http') ? rawUrl : `https://inulab-backend-production.up.railway.app${rawUrl}`)
+                                ? (rawUrl.startsWith('http') ? rawUrl : `https://inulab-backend-production-99d1.up.railway.app${rawUrl}`)
                                 : null;
                             return { ...exam, pdfData: pdfUrl };
                         });
@@ -3461,7 +3461,7 @@ const PdfViewer = ({ url, style, className }) => {
                             
                                     {/* Carrito como vista de contenido completa (no modal) - accesible desde cualquier sección */}
                                     {showOrderSummary && !currentExamForPet && (
-                                        <div style={{position:'fixed', top:'calc(56px + env(safe-area-inset-top,0px))', left:0, right:0, bottom:'calc(60px + env(safe-area-inset-bottom,0px))', display:'flex', flexDirection:'column', background:'#f3f4f6', zIndex:9998}}>
+                                        <div style={{position:'fixed', top:'calc(56px + env(safe-area-inset-top,0px))', left:0, right:0, bottom:'calc(60px + env(safe-area-inset-bottom,0px))', display:'flex', flexDirection:'column', background:'#f3f4f6', zIndex:9998}} className="resumen-pedido-overlay">
 
                                             {/* ── Static top header - cyan gradient ── */}
                                             <div style={{background:'linear-gradient(135deg, #06b6d4, #0284c7)', boxShadow:'0 3px 12px rgba(6,182,212,0.35)', position:'relative', zIndex:2}}>
@@ -4658,7 +4658,7 @@ const PdfViewer = ({ url, style, className }) => {
                                                             </p>
                                                         </div>
                                                         {selectedExam.pdfData ? (
-                                                            <div className="flex-1 flex flex-col min-h-0">
+                                                            <div className="flex-1 flex flex-col min-h-0 pdf-cliente-wrapper bg-white" style={{position:"relative"}} ref={el => { if(el) document.documentElement.style.setProperty("background","white","important"); }}>
                                                                 <PdfViewer url={selectedExam.pdfData} 
                                                                     className="flex-1 w-full rounded-xl border border-gray-200" 
                                                                     title="PDF" />
@@ -7517,7 +7517,7 @@ const PdfViewer = ({ url, style, className }) => {
 
                     {/* ── Carrito / Resumen del Pedido (solo mobile dueño) ── */}
                     {showOrderSummary && !currentExamForPet && (
-                        <div className="lg:hidden" style={{position:'fixed', top:'calc(56px + env(safe-area-inset-top,0px))', left:0, right:0, bottom:'calc(60px + env(safe-area-inset-bottom,0px))', display:'flex', flexDirection:'column', background:'#f3f4f6', zIndex:9998}}>
+                        <div className="lg:hidden" style={{position:'fixed', top:'calc(56px + env(safe-area-inset-top,0px))', left:0, right:0, bottom:'calc(60px + env(safe-area-inset-bottom,0px))', display:'flex', flexDirection:'column', background:'#f3f4f6', zIndex:9998}} className="resumen-pedido-overlay">
                             <div style={{background:'linear-gradient(135deg, #06b6d4, #0284c7)', boxShadow:'0 3px 12px rgba(6,182,212,0.35)', position:'relative', zIndex:2}}>
                                 <div className="px-4 flex items-center gap-3" style={{minHeight:'48px', paddingTop:'10px', paddingBottom:'10px'}}>
                                     <button onClick={() => setShowOrderSummary(false)} className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center text-white flex-shrink-0">
