@@ -5892,7 +5892,7 @@ const PdfViewer = ({ url, style, className }) => {
                                     )}
                                 </div>
                                 {selectedExam.pdfData && (
-                                    <div className="flex justify-center flex-shrink-0">
+                                    <div className="flex justify-center flex-shrink-0 lg:hidden">
                                         <button onClick={() => { const a=document.createElement('a'); a.href=selectedExam.pdfData; a.download=`${selectedExam.type.replace(/[^a-zA-Z0-9]/g,'_')}.pdf`; document.body.appendChild(a); a.click(); document.body.removeChild(a); }} className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-xl font-semibold text-sm shadow-lg">
                                             <i className="fas fa-download"></i> Descargar PDF
                                         </button>
