@@ -5881,7 +5881,7 @@ const PdfViewer = ({ url, style, className }) => {
                                         <p className="text-gray-500 text-xs">{new Date(selectedExam.date).toLocaleDateString('es-PE', {day:'numeric', month:'long', year:'numeric'})}</p>
                                     </div>
                                 </div>
-                                <div className="bg-white rounded-2xl shadow-sm overflow-hidden" style={{flex:'1 1 0', minHeight:0, marginBottom:'12px'}}>
+                                <div className="lg:hidden bg-white rounded-2xl shadow-sm overflow-hidden" style={{ flex: '1 1 0', minHeight: 0, marginBottom: '12px' }}>
                                     {selectedExam.pdfData ? (
                                         <PdfViewer url={selectedExam.pdfData} className="w-full h-full" title="PDF" style={{border:'none'}} />
                                     ) : (
