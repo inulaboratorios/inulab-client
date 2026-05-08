@@ -1442,12 +1442,15 @@ const PdfViewer = ({ url, style, className }) => {
 
                     const addressesResponse = await api.getAddresses();
                     console.log("RAW addresses:", addressesResponse);
-                    const addresses = Array.isArray(addressesResponse)
+                    const addresses = (Array.isArray(addressesResponse)
                         ? addressesResponse
                         : addressesResponse?.$values ||
                         addressesResponse?.addresses ||
                         addressesResponse?.data ||
-                        [];
+                        []).map(a => ({
+                            ...a,
+                            address: a.street || a.address || '',
+                        }));
                     
                     // Enriquecer exams con pdfData de orders
                     pets.forEach(pet => {
