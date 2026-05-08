@@ -5869,7 +5869,7 @@ const PdfViewer = ({ url, style, className }) => {
                         
                         {/* === Vista PDF Resultado (inline desktop) === */}
                         {selectedExam && !viewingOrderTracking && (
-                            <div className="lg:hidden">
+                            <div>
                             {/* Mobile PDF viewer - fixed in content area */}
                             <div className="lg:hidden" style={{position:'fixed', top:'calc(56px + env(safe-area-inset-top, 0px))', left:0, right:0, bottom:'calc(60px + env(safe-area-inset-bottom, 0px))', zIndex:99, background:'#f3f4f6', display:'flex', flexDirection:'column', padding:'12px 16px 16px'}}>
                                 <div className="flex items-center gap-3 mb-3 flex-shrink-0">
