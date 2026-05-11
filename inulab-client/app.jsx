@@ -4177,7 +4177,7 @@ const PdfViewer = ({ url, style, className }) => {
                                                             return (
                                                                 <div 
                                                                     key={order.id} 
-                                                                    onClick={() => relatedExam?.pdfData ? markExamAsSeen(relatedExam, petsOrPatients.find(p => p.id === firstItem.pet.id)) : alert('Este resultado aún no está disponible')}
+                                                                    onClick={() => markExamAsSeen(relatedExam, petsOrPatients.find(p => p.id === firstItem.pet.id))}
                                                                     className="bg-white rounded-xl shadow p-4 cursor-pointer hover:shadow-lg hover:bg-purple-50 transition-all"
                                                                 >
                                                                     <div className="flex items-center justify-between mb-3">
