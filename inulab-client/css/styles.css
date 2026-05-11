@@ -7,23 +7,29 @@
     box-sizing: border-box;
 }
 
+/* ── Prevent iOS zoom on input focus ──
+           iOS zooms whenever an input has font-size < 16px.
+           Force 16px on all interactive elements globally,
+           then scale text down visually with transform if needed. */
 input, textarea, select {
     font-size: 16px !important;
+    /* Prevent iOS from resizing/zooming */
     touch-action: manipulation;
 }
-
+/* Keep visual size consistent — transform scales the rendered size
+           without affecting layout, so 16px renders like ~13px visually */
 @media (max-width: 767px) {
     input, textarea, select {
         transform-origin: left center;
     }
 }
-
+/* Prevenir bounce/rubber-band en iOS */
 html {
     overflow: hidden;
     height: 100%;
     position: fixed;
     width: 100%;
-    background: white;
+    background: white; /* Fix 1: safe area top/bottom = white */
 }
 
 body {
@@ -167,7 +173,7 @@ body {
 .menu-content {
     overflow: hidden;
 }
-
+/* Header fijo para móviles con safe-area */
 .app-header {
     position: fixed !important;
     top: 0;
@@ -197,18 +203,19 @@ body {
     padding-top: calc(70px + env(safe-area-inset-top, 0px));
     min-height: 100vh;
 }
-
+/* Para páginas con breadcrumb - más espacio */
 .app-content-breadcrumb {
     padding-top: calc(70px + env(safe-area-inset-top, 0px));
     min-height: 100vh;
 }
-
+/* Para páginas con tabs (dueños) - aún más espacio */
 .app-content-with-tabs {
     padding-top: calc(115px + env(safe-area-inset-top, 0px));
     min-height: 100vh;
 }
 
 .dueno-content-wrapper > * > .flex-col > .flex-shrink-0 {
+    /* toolbar stretches full width */
     width: 100%;
 }
 
@@ -242,13 +249,107 @@ body {
         overflow-y: auto;
         height: 100vh;
     }
-}
+        /* Cuando hay un visor PDF/Tracking activo (o Pedidos), el wrapper debe ocupar exactamente
+               la altura disponible (debajo del header fijo de 70px) y no scrollear */
+        .app-content-dueno.pdf-active {
+            padding-bottom: 0 !important;
+            overflow: hidden !important;
+            overflow-y: hidden !important;
+        }
 
+            .app-content-dueno.pdf-active .dueno-content-wrapper {
+                height: calc(100vh - 70px);
+                min-height: calc(100vh - 70px);
+                overflow: hidden;
+                padding-bottom: 0 !important;
+            }
+    /* Caja interior única para Pedidos PC dueño:
+               - Ocupa toda la altura del wrapper (calc(100vh - 70px))
+               - Sin padding (header y contenido tienen su propio padding)
+               - flex-col activado vía className "flex flex-col" en JSX
+               - El header es flex-shrink-0 (no se encoge), el contenido es flex-1 (toma el resto y scrollea)
+               - overflow:hidden + min-height:0 es crucial para que el scroll del hijo flex-1 funcione */
+    .dueno-pedidos-pc-padre {
+        background: #f3f4f6;
+        height: calc(100vh - 70px);
+        max-height: calc(100vh - 70px);
+        width: 100%;
+        overflow: hidden;
+        min-height: 0;
+    }
+    /* Caja interior única para Resultados PC dueño - misma fórmula que Pedidos */
+    .dueno-resultados-pc-padre {
+        background: #f3f4f6;
+        height: calc(100vh - 70px);
+        max-height: calc(100vh - 70px);
+        width: 100%;
+        overflow: hidden;
+        min-height: 0;
+    }
+    /* Caja interior única para Facturación PC dueño - misma fórmula que Pedidos */
+    .dueno-facturacion-pc-padre {
+        background: #f3f4f6;
+        height: calc(100vh - 70px);
+        max-height: calc(100vh - 70px);
+        width: 100%;
+        overflow: hidden;
+        min-height: 0;
+    }
+    /* Caja interior única para Pedidos PC clínica - misma fórmula que dueño.
+               Diferencias: clínica usa header de 64px (no 70px) y necesita margin negativo
+               para neutralizar el padding p-6 del padre (.ml-56 flex-1 p-6). */
+    .medico-pedidos-pc-padre {
+        background: #f3f4f6;
+        height: calc(100vh - 64px);
+        max-height: calc(100vh - 64px);
+        width: calc(100% + 3rem);
+        overflow: hidden;
+        min-height: 0;
+        margin: -1.5rem;
+    }
+    /* Caja interior única para Pacientes PC clínica (lista y detalle) - misma fórmula que Pedidos clínica */
+    .medico-pacientes-pc-padre {
+        background: #f3f4f6;
+        height: calc(100vh - 64px);
+        max-height: calc(100vh - 64px);
+        width: calc(100% + 3rem);
+        overflow: hidden;
+        min-height: 0;
+        margin: -1.5rem;
+    }
+    /* Caja interior única para Resultados PC clínica - misma fórmula que Pedidos clínica */
+    .medico-resultados-pc-padre {
+        background: #f3f4f6;
+        height: calc(100vh - 64px);
+        max-height: calc(100vh - 64px);
+        width: calc(100% + 3rem);
+        overflow: hidden;
+        min-height: 0;
+        margin: -1.5rem;
+    }
+    /* Caja interior única para Facturación PC clínica - misma fórmula que Pedidos clínica */
+    .medico-facturacion-pc-padre {
+        background: #f3f4f6;
+        height: calc(100vh - 64px);
+        max-height: calc(100vh - 64px);
+        width: calc(100% + 3rem);
+        overflow: hidden;
+        min-height: 0;
+        margin: -1.5rem;
+    }
+    /* Forzar lg:hidden sobre el style inline (que tiene mayor prioridad sin !important).
+               Necesario porque algunos visores móviles tienen display: flex inline que
+               sobrescribe la clase lg:hidden de Tailwind. */
+    .lg\:hidden {
+        display: none !important;
+    }
+}
+/* Visor de PDF compacto para móviles */
 .pdf-viewer-container {
     max-height: calc(100vh - 280px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
     overflow: hidden;
 }
-
+/* Panel de filtros fijo - NUEVA CAPA flotante */
 .filters-panel {
     position: fixed !important;
     top: calc(58px + env(safe-area-inset-top, 0px));
@@ -272,7 +373,7 @@ body {
     margin: 0 auto;
     padding: 0 0.5rem;
 }
-
+/* Espaciador para el contenido debajo del panel de filtros */
 .list-spacer-small {
     height: 120px;
 }
@@ -285,7 +386,12 @@ body {
     height: 220px;
 }
 
+/* ============================================================
+           INSTAGRAM-STYLE MOBILE LAYOUT
+           Applies only on screens < 768px (md breakpoint)
+        ============================================================ */
 @media (max-width: 767px) {
+    /* Fixed top header: Logo | Username | Hamburger */
     .mob-header {
         position: fixed !important;
         top: 0;
@@ -336,6 +442,7 @@ body {
         gap: 0.5rem;
     }
 
+    /* Scrollable content zone between header and bottom nav */
     .mob-content {
         padding-top: calc(56px + env(safe-area-inset-top, 0px));
         padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
@@ -344,7 +451,7 @@ body {
         -webkit-overflow-scrolling: touch;
         overscroll-behavior-y: auto;
     }
-
+    /* When filters panel is shown, extra top padding */
     .mob-content-filters {
         padding-top: calc(56px + env(safe-area-inset-top, 0px) + 90px);
         padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
@@ -352,6 +459,7 @@ body {
         overflow-x: hidden;
     }
 
+    /* Fixed bottom nav bar */
     .mob-bottom-nav {
         position: fixed !important;
         bottom: 0;
@@ -414,11 +522,14 @@ body {
             color: #06b6d4;
             font-weight: 700;
         }
-
+    /* Override dueño content areas for mobile bottom nav */
     .app-content-dueno, .app-content-breadcrumb {
         padding-top: calc(56px + env(safe-area-inset-top, 0px)) !important;
         padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
     }
+
+    /* Fix 1: Login keyboard stability on mobile — use fixed height, no min-h-screen */
+
 }
 
 @media (max-width: 767px) {
@@ -436,13 +547,16 @@ body {
     }
 }
 
+/* Desktop login: cyan gradient background */
 @media (min-width: 768px) {
     .login-wrapper {
         background: radial-gradient(ellipse at 10% 30%, rgba(6,182,212,0.18) 0%, transparent 30%), radial-gradient(ellipse at 90% 10%, rgba(14,165,233,0.15) 0%, transparent 25%), radial-gradient(ellipse at 75% 90%, rgba(6,182,212,0.16) 0%, transparent 28%), radial-gradient(ellipse at 40% 70%, rgba(14,165,233,0.08) 0%, transparent 20%), #ffffff;
     }
 }
 
+/* ── Touch devices: disable hover, use active tap only ── */
 @media (hover: none) and (max-width: 767px) {
+    /* Kill all Tailwind hover utilities on interactive cards */
     [class*="hover:shadow"]:hover {
         box-shadow: none !important;
     }
@@ -459,10 +573,12 @@ body {
         transform: none !important;
     }
 
+    /* Remove iOS/Android sticky blue tap highlight */
     * {
         -webkit-tap-highlight-color: transparent;
     }
 
+    /* Native-feel tap flash */
     [class*="cursor-pointer"]:active,
     button:active {
         opacity: 0.75;
@@ -477,7 +593,7 @@ body {
     .app-content-breadcrumb {
         font-size: 13px;
     }
-
+        /* Cards and panels */
         .mob-content .bg-white,
         .app-content-dueno .bg-white {
             border-radius: 12px !important;
@@ -490,7 +606,7 @@ body {
             height: 28px !important;
             padding: 0 !important;
         }
-
+        /* Headings */
         .mob-content h1, .app-content-dueno h1 {
             font-size: 1.1rem !important;
         }
@@ -502,14 +618,14 @@ body {
         .mob-content h3, .app-content-dueno h3 {
             font-size: 0.9rem !important;
         }
-
+        /* Reduce padding in content areas */
         .mob-content .max-w-4xl,
         .app-content-dueno .max-w-4xl,
         .app-content-dueno .max-w-5xl {
             padding-left: 0.75rem !important;
             padding-right: 0.75rem !important;
         }
-
+        /* Shrink icon containers */
         .mob-content .w-12.h-12,
         .app-content-dueno .w-12.h-12 {
             width: 2.25rem !important;
@@ -556,7 +672,7 @@ body {
         .app-content-dueno .text-xs {
             font-size: 0.68rem !important;
         }
-
+        /* Reduce internal padding on cards */
         .mob-content .p-6, .app-content-dueno .p-6 {
             padding: 0.9rem !important;
         }
@@ -607,7 +723,7 @@ body {
         .mob-content .gap-3, .app-content-dueno .gap-3 {
             gap: 0.45rem !important;
         }
-
+        /* Buttons */
         .mob-content button.py-3\\.5, .app-content-dueno button.py-3\\.5 {
             padding-top: 0.55rem !important;
             padding-bottom: 0.55rem !important;
@@ -711,6 +827,7 @@ body {
     padding: 0 3px;
 }
 
+/* Hamburger side panel overlay */
 .mob-menu-overlay {
     position: fixed !important;
     inset: 0;
@@ -752,26 +869,4 @@ body {
         transform: translateX(0);
     }
 }
-
-.medico-pedidos-pc-padre {
-    height: calc(100vh - 64px);
-    overflow-y: auto;
 }
-
-@media (min-width: 768px) {
-    .pdf-active {
-        background: #f3f4f6 !important;
-    }
-}
-
-.pdf-cliente-wrapper { background: white; }
-@media (min-width: 768px) { .app-content-wrapper, body { background: white !important; } }
-
-@media (min-width: 768px) { .pdf-active { background: white !important; } html { background: white !important; } }
-
-html, body { background-color: white !important; }
-
-.pdf-cliente-wrapper iframe { clip-path: inset(0 0 60px 0); }
-
-.pdf-cliente-wrapper { overflow: hidden; }
-.pdf-cliente-wrapper iframe { height: calc(100% + 60px) !important; margin-bottom: -60px; }
