@@ -2899,7 +2899,7 @@ const PdfViewer = ({ url, style, className }) => {
                     </div>
                 );
                 
-                return (<div className="min-h-screen bg-gray-100"><div className="bg-white border-b px-4 py-3"><div className="max-w-4xl mx-auto flex items-center gap-4"><button onClick={backHandler} className="text-gray-600"><i className="fas fa-arrow-left"></i></button><img src="assets/logo_inulaboratorios.jpg" alt="Logo" className="h-8" onError={(e) => e.target.style.display = 'none'} /></div></div>{selectionBody}</div>);
+                return (<div className="min-h-screen bg-gray-100 flex"><div className="hidden md:flex w-56 flex-shrink-0"><div className="fixed top-0 left-0 h-full w-56">{renderDuenoSidebar()}</div></div><div className="flex-1 md:ml-56"><div className="bg-white border-b px-4 py-3"><div className="max-w-4xl mx-auto flex items-center gap-4"><button onClick={backHandler} className="text-gray-600"><i className="fas fa-arrow-left"></i></button><img src="assets/logo_inulaboratorios.jpg" alt="Logo" className="h-8" onError={(e) => e.target.style.display = 'none'} /></div></div>{selectionBody}</div></div>);
             }
 
             // VISTA PRINCIPAL
