@@ -2641,7 +2641,7 @@ const PdfViewer = ({ url, style, className }) => {
             }
 
             // Selección de mascota y dirección (solo móvil o usuarios no médicos)
-            if (currentExamForPet && freshUser.type !== 'medico' && freshUser.type !== 'dueño') {
+            if (currentExamForPet && freshUser.type !== 'dueño') {
                 const userAddresses = database.addresses || [];
                 
                 const backHandler = () => { 
@@ -5869,7 +5869,7 @@ const PdfViewer = ({ url, style, className }) => {
                         
                         {/* === Vista PDF Resultado (inline desktop) === */}
                         {selectedExam && !viewingOrderTracking && (
-                            <div>
+                            <div className="lg:hidden">
                             {/* Mobile PDF viewer - fixed in content area */}
                             <div className="lg:hidden" style={{position:'fixed', top:'calc(56px + env(safe-area-inset-top, 0px))', left:0, right:0, bottom:'calc(60px + env(safe-area-inset-bottom, 0px))', zIndex:99, background:'#f3f4f6', display:'flex', flexDirection:'column', padding:'12px 16px 16px'}}>
                                 <div className="flex items-center gap-3 mb-3 flex-shrink-0">
@@ -5900,7 +5900,7 @@ const PdfViewer = ({ url, style, className }) => {
                                 )}
                             </div>
                             {/* Desktop PDF viewer */}
-                            <div className="hidden lg:flex flex-col" style={{height:'calc(100vh - 70px)'}}>
+                            <div className="flex flex-col">
                                 <div className="flex-shrink-0 bg-gray-100 shadow-md border-b border-gray-300 p-4">
                                     <div className="flex items-center gap-3">
                                         <button onClick={() => setSelectedExam(null)} className="w-10 h-10 bg-white hover:bg-gray-100 rounded-full flex items-center justify-center text-gray-600 shadow-sm">
