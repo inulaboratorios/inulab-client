@@ -547,28 +547,11 @@
         // Configurar BASE_URL según el entorno del backend
         // =============================================================================
         // Configurar BASE_URL según el entorno del backend
-        const API_BASE = "https://inulab-backend-production-99d1.up.railway.app/api";
+        const API_BASE = ''; // DEMO MODE - no backend
 
         async function cargarPreciosDesdeAPI() {
-            try {
-                const token = localStorage.getItem('inulab_token');
-                const headers = token ? { 'Authorization': `Bearer ${token}` } : {};
-                const response = await fetch(`${API_BASE}/Precios`, { headers });
-                if (!response.ok) return;
-                const precios = await response.json();
-                precios.forEach(p => {
-                    const id = p.examenId; const precio = p.precio; const tipo = p.tipoUsuario;
-                    if (tipo === 'medico') {
-                        const perfil = perfiles.find(x => x.id === id); if (perfil) { perfil.price = precio; return; }
-                        for (const cat of categorias) { const exam = cat.examenes.find(x => x.id === id); if (exam) { exam.price = precio; return; } }
-                    }
-                    if (tipo === 'dueno') {
-                        const paquete = paquetesDuenos.find(x => x.id === id); if (paquete) { paquete.price = precio; }
-                        const perfil = perfilesDuenos.find(x => x.id === id); if (perfil) { perfil.price = precio; return; }
-                        for (const cat of categoriasDuenos) { const exam = cat.examenes.find(x => x.id === id); if (exam) { exam.price = precio; return; } }
-                    }
-                });
-            } catch (e) { console.warn('No se pudieron cargar precios:', e); }
+            // DEMO MODE - no-op
+            return;
         }
 
         cargarPreciosDesdeAPI();
@@ -729,9 +712,8 @@
         }
         };
         async function checkAuth() {
-            const token = localStorage.getItem('inulab_token');
-            if (!token) return;
-            try { await api.getMe(); } catch (error) { localStorage.removeItem('inulab_token'); }
+            // DEMO MODE - no-op
+            return;
         }
         checkAuth();
         // =============================================================================
@@ -1279,29 +1261,7 @@ const PdfViewer = ({ url, style, className }) => {
             
             useEffect(() => {
                 if (!isAuthenticated) return;
-                const interval = setInterval(async () => {
-                    try {
-                        const ordersResponse = await api.getOrders();
-                        const statusMap = { 0: 'pending', 1: 'assigned', 2: 'moto_en_camino', 3: 'moto_arrived', 4: 'pickup_in_progress', 5: 'sample_received', 6: 'arrived_at_lab', 7: 'processing', 8: 'results_uploaded', 9: 'completed' };
-                        const orders = (ordersResponse || []).map(o => ({
-                            id: o.id, userId: o.userId, userName: o.userName || '',
-                            comment: o.comment || '', createdAt: o.createdAt, completedAt: o.completedAt,
-                            documentType: o.documentType || 'boleta',
-                            invoicePdf: o.invoicePdfUrl ? ('https://inulab-backend-production-99d1.up.railway.app' + o.invoicePdfUrl) : null,
-                            invoicePdfUrl: o.invoicePdfUrl || null,
-                            invoiceStatus: o.invoicePdfUrl ? 'uploaded' : 'pending',
-                            status: statusMap[Number(o.status)] || 'pending',
-                            addressId: o.addressId,
-                            items: (o.items || []).map(item => {
-                                const rawPdf = item.pdfUrl || o.resultPdfUrl || null;
-                                const pdf = rawPdf ? (rawPdf.startsWith('http') ? rawPdf : ('https://inulab-backend-production-99d1.up.railway.app' + rawPdf)) : null;
-                                return { examName: String(item.examName || ''), exam: { name: String(item.examName || ''), icon: 'fa-vial', color: 'text-cyan-600', bg: 'bg-cyan-100' }, pet: { name: String(item.petName || ''), photo: item.petPhoto || '🐾' }, address: { address: String(item.addressStreet || ''), district: String(item.addressDistrict || '') }, pdfData: pdf };
-                            })
-                        }));
-                        setDatabase(e => ({ ...e, orders }));
-                    } catch (e) { console.error('Polling error:', e); }
-                }, 15000);
-                return () => clearInterval(interval);
+                // DEMO MODE - no polling
             }, [isAuthenticated]);
             
             // Estados para trackear nuevos pendientes de mostrar
@@ -1358,69 +1318,78 @@ const PdfViewer = ({ url, style, className }) => {
 
             const loadAddresses = async () => {
                 try {
-                    const res = await fetch(`${API_BASE}/Addresses`, { headers: api._headers() });
-                    const data = await res.json();
-                    setDatabase(prev => ({ ...prev, addresses: data }));
-                } catch (error) { console.error("Error cargando direcciones", error); }
+                    const stored = localStorage.getItem('inulab_demo_db');
+                    if (stored) {
+                        const db = JSON.parse(stored);
+                        setDatabase(prev => ({ ...prev, addresses: db.addresses || [] }));
+                    }
+                } catch (e) {}
             };
 
             async function cargarFacturas() {
-                const token = localStorage.getItem("inulab_token");
-                const res = await fetch(`${API_BASE}/Facturas`, { headers: { "Authorization": `Bearer ${token}` } });
-                const data = await res.json();
-                setFacturas(data);
+                // DEMO MODE - no-op
+                setFacturas([]);
             }
 
             const loadDatabase = async (silent = false) => {
                 if (!silent) setLoading(true);
                 try {
-                    const petsResponse = await api.getPets();
-                    const pets = (petsResponse?.pets||petsResponse||[]).map(p => ({ id:p.id, name:String(p.name||''), species:String(p.species||''), breed:String(p.breed||''), age:p.age, sex:String(p.sex||p.gender||''), photo:p.species==='perro'?'🐶':p.species==='gato'?'🐱':p.species==='ave'?'🦜':p.species==='conejo'?'🐰':'🐾', owner:String(p.ownerName||''), exams:(p.exams||[]).map(ex => ({ id:ex.id, type:ex.type||ex.examName||'Examen', date:ex.date, seen:true, pdfData:ex.pdfUrl?(ex.pdfUrl.startsWith('http')?ex.pdfUrl:'https://inulab-backend-production-99d1.up.railway.app'+ex.pdfUrl):null })) }));
-                    const ordersResponse = await api.getOrders();
-                    const statusMap = { 0:'pending',1:'assigned',2:'moto_en_camino',3:'moto_arrived',4:'pickup_in_progress',5:'sample_received',6:'arrived_at_lab',7:'processing',8:'results_uploaded',9:'completed' };
-                    const BASE = 'https://inulab-backend-production-99d1.up.railway.app';
-                    const orders = (ordersResponse || []).map(o => ({
-                        id: o.id, userId: o.userId, userName: o.userName || '', comment: o.comment || '',
-                        createdAt: o.createdAt, completedAt: o.completedAt, documentType: o.documentType || 'boleta',
-                        invoicePdf: o.invoicePdfUrl ? (BASE + o.invoicePdfUrl) : null,
-                        invoicePdfUrl: o.invoicePdfUrl || null,
-                        invoiceStatus: o.invoicePdfUrl ? 'uploaded' : 'pending',
-                        status: statusMap[Number(o.status)] || 'pending',
-                        addressId: o.addressId, resultPdfUrl: o.resultPdfUrl || null,
-                        items: (o.items || []).map(function(item) {
-                            var rawPdf = item.pdfUrl || o.resultPdfUrl || null;
-                            var pdf = rawPdf ? (rawPdf.startsWith('http') ? rawPdf : (BASE + rawPdf)) : null;
-                            return { examName: String(item.examName || ''), exam: { name: String(item.examName || ''), icon: 'fa-vial', color: 'text-cyan-600', bg: 'bg-cyan-100' }, pet: { name: String(item.petName || ''), photo: item.petPhoto || '🐾' }, address: { address: String(item.addressStreet || ''), district: String(item.addressDistrict || '') }, pdfData: pdf };
-                        })
-                    }));
-                    const addressesResponse = await api.getAddresses();
-                    const addresses = Array.isArray(addressesResponse) ? addressesResponse : (addressesResponse && (addressesResponse.$values || addressesResponse.addresses || addressesResponse.data)) || [];
-                    pets.forEach(function(pet) {
-                        pet.exams = pet.exams.map(function(exam) {
-                            var match = orders.find(function(o) { return (o.status === 'completed' || Number(o.status) === 9) && (o.items || []).some(function(i) { return String(i.examName).toLowerCase() === String(exam.type).toLowerCase(); }); });
-                            var rawUrl = match ? match.resultPdfUrl : null;
-                            var pdfUrl = rawUrl ? (rawUrl.startsWith('http') ? rawUrl : (BASE + rawUrl)) : null;
-                            return Object.assign({}, exam, { pdfData: pdfUrl });
-                        });
+                    const stored = localStorage.getItem('inulab_demo_db');
+                    let db;
+                    if (stored) {
+                        db = JSON.parse(stored);
+                    } else {
+                        // Datos semilla demo
+                        db = {
+                            pets: [
+                                { id: 'p1', name: 'Max', species: 'perro', breed: 'Labrador', age: 3, sex: 'macho', photo: '🐶', owner: 'darker', exams: [{ id: 'e1', type: 'Hemograma Completo', date: '2024-01-15', seen: false, pdfData: null }] },
+                                { id: 'p2', name: 'Luna', species: 'gato', breed: 'Persa', age: 2, sex: 'hembra', photo: '🐱', owner: 'darker', exams: [] }
+                            ],
+                            orders: [
+                                { id: 'o1', userId: 'u-darker', status: 'completed', createdAt: '2024-01-15T10:00:00Z', completedAt: '2024-01-16T10:00:00Z', documentType: 'boleta', invoicePdf: null, invoiceStatus: 'pending', items: [{ examName: 'Hemograma Completo', exam: { name: 'Hemograma Completo', icon: 'fa-vial', color: 'text-cyan-600', bg: 'bg-cyan-100' }, pet: { name: 'Max', photo: '🐶' }, address: { address: 'Av. Javier Prado 123', district: 'San Isidro' }, pdfData: null }] },
+                                { id: 'o2', userId: 'u-darker', status: 'processing', createdAt: '2024-01-20T10:00:00Z', completedAt: null, documentType: 'boleta', invoicePdf: null, invoiceStatus: 'pending', items: [{ examName: 'Perfil Básico', exam: { name: 'Perfil Básico', icon: 'fa-vials', color: 'text-blue-600', bg: 'bg-blue-100' }, pet: { name: 'Luna', photo: '🐱' }, address: { address: 'Av. Javier Prado 123', district: 'San Isidro' }, pdfData: null }] }
+                            ],
+                            addresses: [
+                                { id: 'a1', name: 'Casa', address: 'Av. Javier Prado 123', district: 'San Isidro', reference: 'Frente al parque' }
+                            ],
+                            results: [], users: [], invoices: [], exams: [],
+                            nightMode: false
+                        };
+                        localStorage.setItem('inulab_demo_db', JSON.stringify(db));
+                    }
+                    setDatabase({
+                        pets: db.pets || [],
+                        orders: db.orders || [],
+                        addresses: db.addresses || [],
+                        results: db.results || [],
+                        users: db.users || [],
+                        invoices: db.invoices || [],
+                        exams: db.exams || []
                     });
-                    setDatabase({ pets:pets||[], orders:orders||[], addresses:addresses||[], results:[], users:[], invoices:[], exams:[] });
-                } catch(err) { console.error("ERROR API:",err); setDatabase({ pets:[], orders:[], addresses:[] }); }
-                finally { if (!silent) setLoading(false); }
+                } catch (err) {
+                    console.error('DEMO loadDatabase error:', err);
+                    setDatabase({ pets: [], orders: [], addresses: [], results: [], users: [], invoices: [], exams: [] });
+                } finally {
+                    if (!silent) setLoading(false);
+                }
             };
 
                         const handleLogin = async (e) => {
-                e.preventDefault(); setError('');
-                try {
-                    const response = await fetch(API_BASE + "/Auth/login", { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({username, password}) });
-                    if (!response.ok) throw new Error("Credenciales incorrectas");
-                    const data = await response.json();
-                    localStorage.setItem("inulab_token", data.token);
-                    if (data.user.type==='admin'||data.user.type==='motorizado') { setError('Este portal es solo para clientes.'); return; }
-                    await cargarPreciosDesdeAPI();
-                    setCurrentUser({...data.user, name:data.user.username});
-                    setUserType(data.user.type);
-                    setIsAuthenticated(true);
-                } catch(err) { setError("Usuario o contraseña incorrectos"); }
+                e.preventDefault();
+                setError('');
+                const DEMO_USERS = {
+                    'darker': { password: '123', user: { id: 'u-darker', username: 'darker', name: 'Darker', type: 'dueño', email: 'darker@demo.com' } },
+                    'clinica': { password: '123', user: { id: 'u-clinica', username: 'clinica', name: 'Clínica Demo', type: 'medico', email: 'clinica@demo.com', clinicName: 'VetDemo S.A.C.', ruc: '20123456789', district: 'San Isidro' } }
+                };
+                const match = DEMO_USERS[username.toLowerCase()];
+                if (!match || match.password !== password) {
+                    setError('Usuario o contraseña incorrectos. Demo: darker/123 o clinica/123');
+                    return;
+                }
+                localStorage.setItem('inulab_token', 'demo-token-' + match.user.id);
+                setCurrentUser({ ...match.user, name: match.user.username });
+                setUserType(match.user.type);
+                setIsAuthenticated(true);
             };
             
             // Función para obtener nombre de mascota con apellido de la familia
