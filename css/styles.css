@@ -601,3 +601,70 @@
             }
         }
 
+
+        /* ══════════════════════════════════════════════════════════════
+           FIX: Mostrar visor de resultados dueño en PC
+           El wrapper exterior tiene lg:hidden pero debe ser visible en PC
+           para que el visor de PDF interno (flex-col) se muestre.
+           El overlay móvil interno (lg:hidden fijo) sigue oculto.
+        ══════════════════════════════════════════════════════════════ */
+        @media (min-width: 1024px) {
+            .dueno-content-wrapper > .lg\:hidden {
+                display: block !important;
+            }
+        }
+
+        /* ══════════════════════════════════════════════════════════════
+           RESPONSIVE: Pantallas anchas y bajas (laptops como 1366x768)
+        ══════════════════════════════════════════════════════════════ */
+        @media (min-width: 1024px) and (max-height: 800px) {
+            /* Reducir tamaño base de fuente en PC con poca altura */
+            .ml-56 { font-size: 13px; }
+
+            /* Modales - nunca mayores al viewport */
+            .modal-overlay > * {
+                max-height: 88vh !important;
+                overflow-y: auto;
+            }
+
+            /* Secciones PC clínica: ajustar al viewport real */
+            .medico-pedidos-pc-padre,
+            .medico-resultados-pc-padre,
+            .medico-pacientes-pc-padre,
+            .medico-facturacion-pc-padre {
+                height: calc(100vh - 64px) !important;
+                max-height: calc(100vh - 64px) !important;
+                overflow-y: auto !important;
+            }
+
+            /* Secciones PC dueño */
+            .dueno-pedidos-pc-padre,
+            .dueno-resultados-pc-padre,
+            .dueno-facturacion-pc-padre {
+                height: calc(100vh - 70px) !important;
+                max-height: calc(100vh - 70px) !important;
+                overflow-y: auto !important;
+            }
+
+            /* Flujo de pedido dueño (selección mascota, dirección, toma de muestra) */
+            .app-content-dueno {
+                overflow-y: auto !important;
+            }
+        }
+
+        /* Pantallas muy bajas (< 650px altura) */
+        @media (min-width: 1024px) and (max-height: 650px) {
+            .ml-56 { font-size: 12px; }
+
+            .modal-overlay > * {
+                max-height: 95vh !important;
+            }
+
+            /* Reducir padding en secciones PC */
+            .medico-pedidos-pc-padre .p-6,
+            .medico-resultados-pc-padre .p-6,
+            .dueno-pedidos-pc-padre .p-6,
+            .dueno-resultados-pc-padre .p-6 {
+                padding: 0.75rem !important;
+            }
+        }
