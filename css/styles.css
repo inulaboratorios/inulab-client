@@ -97,6 +97,50 @@
             top: 0; left: 0; right: 0; bottom: 0;
             z-index: 99999 !important;
             background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        /* Cards flotantes (carrito, términos) - siempre dentro del viewport */
+        .modal-overlay > div {
+            max-height: calc(100vh - 32px) !important;
+            display: flex !important;
+            flex-direction: column !important;
+            overflow: hidden !important;
+            flex-shrink: 0;
+        }
+
+        /* Sección scrolleable interna del card (entre header y footer) */
+        .modal-overlay > div > div.overflow-y-auto,
+        .modal-overlay > div > div[style*="overflow-y: auto"],
+        .modal-overlay > div > div[style*="overflow-y:auto"] {
+            overflow-y: auto !important;
+            flex: 1 !important;
+            min-height: 0 !important;
+        }
+
+        /* Pantallas bajas - reducir padding del overlay */
+        @media (max-height: 700px) {
+            .modal-overlay {
+                padding: 8px;
+                align-items: flex-start;
+            }
+            .modal-overlay > div {
+                max-height: calc(100vh - 16px) !important;
+            }
+        }
+
+        @media (max-height: 500px) {
+            .modal-overlay {
+                padding: 4px;
+            }
+            .modal-overlay > div {
+                max-height: calc(100vh - 8px) !important;
+                border-radius: 12px !important;
+            }
         }
         .app-content {
             padding-top: calc(70px + env(safe-area-inset-top, 0px));
@@ -601,6 +645,18 @@
             }
         }
 
+
+        /* ══════════════════════════════════════════════════════════════
+           FIX: Mostrar visor de resultados dueño en PC
+           El wrapper exterior tiene lg:hidden pero debe ser visible en PC
+           para que el visor de PDF interno (flex-col) se muestre.
+           El overlay móvil interno (lg:hidden fijo) sigue oculto.
+        ══════════════════════════════════════════════════════════════ */
+        @media (min-width: 1024px) {
+            .dueno-content-wrapper > .lg\:hidden {
+                display: block !important;
+            }
+        }
 
         /* ══════════════════════════════════════════════════════════════
            RESPONSIVE: Pantallas anchas y bajas (laptops como 1366x768)
