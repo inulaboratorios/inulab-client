@@ -7,29 +7,23 @@
     box-sizing: border-box;
 }
 
-/* ── Prevent iOS zoom on input focus ──
-           iOS zooms whenever an input has font-size < 16px.
-           Force 16px on all interactive elements globally,
-           then scale text down visually with transform if needed. */
 input, textarea, select {
     font-size: 16px !important;
-    /* Prevent iOS from resizing/zooming */
     touch-action: manipulation;
 }
-/* Keep visual size consistent — transform scales the rendered size
-           without affecting layout, so 16px renders like ~13px visually */
+
 @media (max-width: 767px) {
     input, textarea, select {
         transform-origin: left center;
     }
 }
-/* Prevenir bounce/rubber-band en iOS */
+
 html {
     overflow: hidden;
     height: 100%;
     position: fixed;
     width: 100%;
-    background: white; /* Fix 1: safe area top/bottom = white */
+    background: white;
 }
 
 body {
@@ -173,7 +167,7 @@ body {
 .menu-content {
     overflow: hidden;
 }
-/* Header fijo para móviles con safe-area */
+
 .app-header {
     position: fixed !important;
     top: 0;
@@ -203,12 +197,12 @@ body {
     padding-top: calc(70px + env(safe-area-inset-top, 0px));
     min-height: 100vh;
 }
-/* Para páginas con breadcrumb - más espacio */
+
 .app-content-breadcrumb {
     padding-top: calc(70px + env(safe-area-inset-top, 0px));
     min-height: 100vh;
 }
-/* Para páginas con tabs (dueños) - aún más espacio */
+
 .app-content-with-tabs {
     padding-top: calc(115px + env(safe-area-inset-top, 0px));
     min-height: 100vh;
@@ -248,6 +242,7 @@ body {
         overflow: hidden;
         height: 100vh;
     }
+
         .app-content-dueno.pdf-active {
             padding-bottom: 0 !important;
             overflow: hidden !important;
@@ -266,7 +261,7 @@ body {
         height: calc(100vh - 70px);
         max-height: calc(100vh - 70px);
         width: 100%;
-        overflow: hidden;
+        overflow-y: auto;
         min-height: 0;
     }
 
@@ -275,7 +270,7 @@ body {
         height: calc(100vh - 70px);
         max-height: calc(100vh - 70px);
         width: 100%;
-        overflow: hidden;
+        overflow-y: auto;
         min-height: 0;
     }
 
@@ -284,7 +279,7 @@ body {
         height: calc(100vh - 70px);
         max-height: calc(100vh - 70px);
         width: 100%;
-        overflow: hidden;
+        overflow-y: auto;
         min-height: 0;
     }
 
@@ -747,8 +742,6 @@ body {
     to { transform: translateX(0); }
 }
 
-/* ── Fix modal resumen del pedido (dueño PC) ── */
-/* Solo visible en desktop, tapa toda la pantalla */
 .resumen-pedido-overlay {
     position: fixed !important;
     top: 0 !important;
