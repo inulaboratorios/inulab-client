@@ -245,7 +245,7 @@ body {
 @media (min-width: 1024px) {
     .app-content-dueno {
         padding-top: calc(70px + env(safe-area-inset-top, 0px));
-        overflow-y: auto;
+        overflow: hidden;
         height: 100vh;
     }
         .app-content-dueno.pdf-active {
