@@ -771,17 +771,19 @@ body {
         overflow-y: auto !important;
     }
 }
-.resumen-pedido-overlay {
-    position: fixed !important;
-    top: calc(56px + env(safe-area-inset-top, 0px)) !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: calc(60px + env(safe-area-inset-bottom, 0px)) !important;
-    width: 100vw !important;
-    height: auto !important;
-    z-index: 99999 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    clip: unset !important;
-    overflow: visible !important;
+@media (max-width: 1023px) {
+    .resumen-pedido-overlay {
+        position: fixed !important;
+        top: calc(56px + env(safe-area-inset-top, 0px)) !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: calc(60px + env(safe-area-inset-bottom, 0px)) !important;
+        width: 100vw !important;
+        height: auto !important;
+        z-index: 99999 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        clip: unset !important;
+        overflow: visible !important;
+    }
 }
