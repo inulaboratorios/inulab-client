@@ -804,3 +804,9 @@ body:has(.resumen-pedido-overlay) {
     overflow: visible !important;
     height: auto !important;
 }
+@media (max-width: 1023px) {
+    .app-content-dueno:has(.resumen-pedido-overlay) .dueno-content-wrapper {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+}
