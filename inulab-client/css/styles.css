@@ -766,3 +766,8 @@ body {
         overflow: visible !important;
     }
 }
+@media (max-width: 1023px) {
+    #root {
+        overflow-y: auto !important;
+    }
+}
