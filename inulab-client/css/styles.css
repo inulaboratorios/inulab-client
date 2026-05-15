@@ -797,5 +797,10 @@ body {
 
     .resumen-pedido-overlay {
         gap: 0 !important;
+        flex-direction: column !important;
     }
+
+        .resumen-pedido-overlay > div:first-child {
+            flex-shrink: 0 !important;
+        }
 }
