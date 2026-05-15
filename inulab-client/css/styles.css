@@ -779,7 +779,8 @@ body {
         right: 0 !important;
         bottom: calc(60px + env(safe-area-inset-bottom, 0px)) !important;
         width: 100vw !important;
-        height: 100% !important;
+        height: calc(100vh - calc(56px + env(safe-area-inset-top, 0px)) - calc(60px + env(safe-area-inset-bottom, 0px))) !important;
+        background: #f3f4f6 !important;
         z-index: 99999 !important;
         display: flex !important;
         flex-direction: column !important;
