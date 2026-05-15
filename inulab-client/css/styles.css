@@ -779,7 +779,7 @@ body {
         right: 0 !important;
         bottom: calc(60px + env(safe-area-inset-bottom, 0px)) !important;
         width: 100vw !important;
-        height: auto !important;
+        height: 100% !important;
         z-index: 99999 !important;
         display: flex !important;
         flex-direction: column !important;
