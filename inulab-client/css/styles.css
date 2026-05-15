@@ -771,22 +771,24 @@ body {
         overflow-y: auto !important;
     }
 }
-@media (max-width: 1023px) {
-    .resumen-pedido-overlay {
-        position: fixed !important;
-        top: calc(56px + env(safe-area-inset-top, 0px)) !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: calc(60px + env(safe-area-inset-bottom, 0px)) !important;
-        width: 100vw !important;
-        height: calc(100vh - calc(56px + env(safe-area-inset-top, 0px)) - calc(60px + env(safe-area-inset-bottom, 0px))) !important;
-        background: #f3f4f6 !important;
-        z-index: 99999 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        clip: unset !important;
-        overflow: visible !important;
-    }
+.resumen-pedido-overlay {
+    position: fixed !important;
+    top: calc(56px + env(safe-area-inset-top, 0px)) !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: calc(60px + env(safe-area-inset-bottom, 0px)) !important;
+    width: 100vw !important;
+    height: calc(100vh - calc(56px + env(safe-area-inset-top, 0px)) - calc(60px + env(safe-area-inset-bottom, 0px))) !important;
+    background: #f3f4f6 !important;
+    z-index: 99999 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    clip: unset !important;
+    overflow: visible !important;
+    gap: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
 }
 @media (max-width: 1023px) {
     .resumen-pedido-overlay > div:nth-child(2) {
