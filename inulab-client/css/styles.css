@@ -780,4 +780,8 @@ body {
     width: 100vw !important;
     height: auto !important;
     z-index: 99999 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    clip: unset !important;
+    overflow: visible !important;
 }
