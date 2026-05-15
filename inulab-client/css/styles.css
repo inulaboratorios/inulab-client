@@ -214,6 +214,8 @@ body {
 
 .dueno-content-wrapper {
     min-height: calc(100vh - 64px);
+    contain: none !important;
+    overflow: visible !important;
 }
 
     .dueno-content-wrapper .dueno-normal-content {
@@ -797,3 +799,8 @@ body:has(.resumen-pedido-overlay) {
     body:has(.resumen-pedido-overlay) #root {
         overflow: hidden !important;
     }
+
+.app-content-dueno:has(.resumen-pedido-overlay) {
+    overflow: visible !important;
+    height: auto !important;
+}
