@@ -757,3 +757,21 @@
                 overflow-y: auto !important;
             }
         }
+
+        /* ══════════════════════════════════════════════════════════════
+           ORDER SUMMARY MODAL — scroll independiente por columna (PC chatas)
+           El modal tiene height:680px fijo + max-height:88vh en pantallas
+           con max-height:800px (regla existente más arriba). La columna
+           izquierda (Exámenes) ya tenía overflow-y:auto pero como la derecha
+           (Detalles) NO lo tenía, su contenido empujaba al body completo y
+           el scroll se trasladaba al modal entero.
+           Fix: overflow-y:auto + min-height:0 en ambas columnas para que
+           cada una scrollee independientemente dentro de su mitad.
+           Aplica a ambos modales (médico y dueño - misma estructura).
+           ══════════════════════════════════════════════════════════════ */
+        @media (min-width: 1024px) {
+            .modal-overlay [class~="lg:flex-row"][class~="min-h-0"] > [class~="lg:w-1/2"] {
+                overflow-y: auto;
+                min-height: 0;
+            }
+        }
