@@ -770,6 +770,7 @@ body {
     margin: 0 !important;
     transform: none !important;
 }
+
 @media (max-width: 1023px) {
     .resumen-pedido-overlay > div:nth-child(2) {
         padding-top: 0 !important;
@@ -794,5 +795,12 @@ body:has(.resumen-pedido-overlay) {
     .app-content-dueno:has(.resumen-pedido-overlay) .dueno-content-wrapper {
         padding-top: 0 !important;
         margin-top: 0 !important;
+    }
+}
+@media (min-width: 1024px) {
+    .app-content-dueno .dueno-content-wrapper {
+        overflow-y: auto !important;
+        height: calc(100vh - 70px) !important;
+        max-height: calc(100vh - 70px) !important;
     }
 }
