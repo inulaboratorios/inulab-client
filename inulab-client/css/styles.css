@@ -733,3 +733,27 @@
                 padding: 0.75rem !important;
             }
         }
+
+
+        /* ══════════════════════════════════════════════════════════════
+           WIZARD SCROLL FIX — pantallas PC chatas (laptops ~768h)
+           Permite scroll cuando contenido del wizard (mascota/dirección/toma de muestra)
+           excede altura disponible. En pantallas altas, scroll no activa.
+           Categorías (-pc-padre) no se afectan: tienen su propio overflow interno
+           y llenan exactamente el wrapper.
+           ══════════════════════════════════════════════════════════════ */
+        @media (min-width: 1024px) {
+            /* MEDICO wizard: flex-1 con overflow-y-auto necesita min-height:0
+               para activar scroll (flexbox gotcha). Aplica al wizard inline y
+               vistas alternas con mismo patrón (tracking, PDF, ver-todos). */
+            [class~="flex-col"][class~="h-full"][class~="-mx-6"][class~="-mt-6"] > [class~="flex-1"][class~="overflow-y-auto"] {
+                min-height: 0 !important;
+            }
+
+            /* DUEÑO wizard: wrapper permite scroll cuando .dueno-normal-content
+               (sin altura fija) excede el espacio. No afecta categorías porque
+               -pc-padre llena wrapper exactamente con overflow propio. */
+            .dueno-content-wrapper {
+                overflow-y: auto !important;
+            }
+        }
