@@ -142,6 +142,27 @@
                 border-radius: 12px !important;
             }
         }
+
+        /* Términos y Condiciones - en mobile se ve flat fullscreen (entre header y bottom nav), no como card flotante */
+        @media (max-width: 1023px) {
+            .modal-overlay.terms-modal {
+                padding: 0 !important;
+                background: white !important;
+                top: calc(56px + env(safe-area-inset-top, 0px)) !important;
+                bottom: calc(60px + env(safe-area-inset-bottom, 0px)) !important;
+                align-items: stretch !important;
+                justify-content: stretch !important;
+                overflow: hidden !important;
+            }
+            .modal-overlay.terms-modal > div {
+                max-width: 100% !important;
+                max-height: 100% !important;
+                width: 100% !important;
+                height: 100% !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+            }
+        }
         .app-content {
             padding-top: calc(70px + env(safe-area-inset-top, 0px));
             min-height: 100vh;
