@@ -214,8 +214,6 @@ body {
 
 .dueno-content-wrapper {
     min-height: calc(100vh - 64px);
-    contain: none !important;
-    overflow: visible !important;
 }
 
     .dueno-content-wrapper .dueno-normal-content {
@@ -744,68 +742,22 @@ body {
     to { transform: translateX(0); }
 }
 
-@media (max-width: 1023px) {
-    .app-content-dueno {
-        overflow: visible !important;
-    }
-}
-@media (max-width: 1023px) {
-    #root {
-        overflow-y: auto !important;
-    }
-}
 .resumen-pedido-overlay {
     position: fixed !important;
-    top: calc(56px + env(safe-area-inset-top, 0px)) !important;
+    top: 0 !important;
     left: 0 !important;
     right: 0 !important;
-    bottom: calc(60px + env(safe-area-inset-bottom, 0px)) !important;
-    width: 100% !important;
-    background: #f3f4f6 !important;
-    z-index: 99999 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    transform: none !important;
+    bottom: 0 !important;
+    z-index: 999999 !important;
+    background: rgba(0, 0, 0, 0.65) !important;
+    display: none !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1rem !important;
 }
 
-@media (max-width: 1023px) {
-    .resumen-pedido-overlay > div:nth-child(2) {
-        padding-top: 0 !important;
-        margin-top: 0 !important;
-        gap: 0 !important;
-    }
-}
-
-body:has(.resumen-pedido-overlay) {
-    position: static !important;
-}
-
-    body:has(.resumen-pedido-overlay) #root {
-        overflow: hidden !important;
-    }
-
-.app-content-dueno:has(.resumen-pedido-overlay) {
-    overflow: visible !important;
-    height: auto !important;
-}
-@media (max-width: 1023px) {
-    .app-content-dueno:has(.resumen-pedido-overlay) .dueno-content-wrapper {
-        padding-top: 0 !important;
-        margin-top: 0 !important;
-    }
-}
 @media (min-width: 1024px) {
-    .app-content-dueno .dueno-content-wrapper {
-        overflow-y: auto !important;
-        height: calc(100vh - 70px) !important;
-        max-height: calc(100vh - 70px) !important;
-    }
-
-    .app-content-dueno {
-        overflow: hidden !important;
-        height: 100vh !important;
+    .resumen-pedido-overlay {
+        display: flex !important;
     }
 }
