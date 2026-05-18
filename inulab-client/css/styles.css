@@ -803,4 +803,9 @@ body:has(.resumen-pedido-overlay) {
         height: calc(100vh - 70px) !important;
         max-height: calc(100vh - 70px) !important;
     }
+
+    .app-content-dueno {
+        overflow: hidden !important;
+        height: 100vh !important;
+    }
 }
