@@ -775,3 +775,29 @@
                 min-height: 0;
             }
         }
+
+        /* ══════════════════════════════════════════════════════════════
+           TERMS MODAL — z-index sobre carrito + cap de altura
+           Problema: el modal de carrito usa .modal-overlay base que tiene
+           z-index:99999 !important. El inline zIndex:9999 del terms pierde
+           contra ese !important, así que ambos quedan en 99999 y por orden
+           de DOM el carrito queda arriba.
+           Solución z-index: selector con doble-clase (.modal-overlay.terms-modal)
+           tiene specificity (0,2,0) vs (0,1,0) → gana con !important.
+           
+           Problema altura: reglas `.modal-overlay > div { max-height: ... }`
+           con !important sobrescriben el inline maxHeight del JS.
+           Solución altura: `.modal-overlay.terms-modal > div` tiene
+           specificity (0,3,0) vs (0,2,0) → gana.
+           
+           Cap: min(85vh, 680px) = responsive en pantallas chatas,
+           se mantiene en 680px (igual al carrito) en pantallas altas.
+           ══════════════════════════════════════════════════════════════ */
+        @media (min-width: 1024px) {
+            .modal-overlay.terms-modal {
+                z-index: 100000 !important;
+            }
+            .modal-overlay.terms-modal > div {
+                max-height: min(85vh, 680px) !important;
+            }
+        }
