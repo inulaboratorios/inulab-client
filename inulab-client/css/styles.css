@@ -12,7 +12,7 @@
         }
         /* Keep visual size consistent — transform scales the rendered size
            without affecting layout, so 16px renders like ~13px visually */
-        @media (max-width: 767px) {
+        @media (max-width: 1023px) {
             input, textarea, select {
                 transform-origin: left center;
             }
@@ -344,7 +344,7 @@
            INSTAGRAM-STYLE MOBILE LAYOUT
            Applies only on screens < 768px (md breakpoint)
         ============================================================ */
-        @media (max-width: 767px) {
+        @media (max-width: 1023px) {
             /* Fixed top header: Logo | Username | Hamburger */
             .mob-header {
                 position: fixed !important;
@@ -455,7 +455,7 @@
 
         }
 
-        @media (max-width: 767px) {
+        @media (max-width: 1023px) {
             .login-wrapper {
                 height: 100%;
                 min-height: 0 !important;
@@ -479,7 +479,7 @@
         }
 
         /* ── Touch devices: disable hover, use active tap only ── */
-        @media (hover: none) and (max-width: 767px) {
+        @media (hover: none) and (max-width: 1023px) {
             /* Kill all Tailwind hover utilities on interactive cards */
             [class*="hover:shadow"]:hover { box-shadow: none !important; }
             [class*="hover:border"]:hover { border-color: transparent !important; }
