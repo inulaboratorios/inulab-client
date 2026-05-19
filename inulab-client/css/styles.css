@@ -21,15 +21,13 @@
         html {
             overflow: hidden;
             height: 100%;
-            position: fixed;
             width: 100%;
             overscroll-behavior: none;
-            background: white; /* Fix 1: safe area top/bottom = white */
+            background: white; /* safe area top/bottom = white */
         }
         body {
             overflow: hidden;
             height: 100%;
-            position: fixed;
             width: 100%;
             overscroll-behavior: none;
             background: #f3f4f6;
@@ -41,7 +39,6 @@
             -webkit-overflow-scrolling: touch;
             overscroll-behavior: none;
             background: #f3f4f6;
-            background: white;
         }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -397,7 +394,6 @@
             .mob-content {
                 padding-top: calc(56px + env(safe-area-inset-top, 0px));
                 padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
-                min-height: 100vh;
                 overflow-x: hidden;
                 -webkit-overflow-scrolling: touch;
                 overscroll-behavior-y: none;
