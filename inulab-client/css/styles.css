@@ -23,6 +23,7 @@
             height: 100%;
             position: fixed;
             width: 100%;
+            overscroll-behavior: none;
             background: white; /* Fix 1: safe area top/bottom = white */
         }
         body {
@@ -30,6 +31,7 @@
             height: 100%;
             position: fixed;
             width: 100%;
+            overscroll-behavior: none;
             background: #f3f4f6;
         }
         #root {
@@ -37,7 +39,7 @@
             overflow-y: auto;
             overflow-x: hidden;
             -webkit-overflow-scrolling: touch;
-            overscroll-behavior: contain;
+            overscroll-behavior: none;
             background: #f3f4f6;
             background: white;
         }
@@ -198,6 +200,7 @@
             padding-top: calc(56px + env(safe-area-inset-top, 0px));
             min-height: 100vh;
             overflow-y: auto;
+            overscroll-behavior: none;
             height: 100vh;
             padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px));
         }
@@ -397,7 +400,7 @@
                 min-height: 100vh;
                 overflow-x: hidden;
                 -webkit-overflow-scrolling: touch;
-                overscroll-behavior-y: auto;
+                overscroll-behavior-y: none;
             }
             /* When filters panel is shown, extra top padding */
             .mob-content-filters {
