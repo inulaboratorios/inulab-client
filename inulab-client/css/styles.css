@@ -21,6 +21,7 @@
         html {
             overflow: hidden;
             height: 100%;
+            position: fixed;
             width: 100%;
             overscroll-behavior: none;
             background: white; /* safe area top/bottom = white */
@@ -28,6 +29,7 @@
         body {
             overflow: hidden;
             height: 100%;
+            position: fixed;
             width: 100%;
             overscroll-behavior: none;
             background: #f3f4f6;
