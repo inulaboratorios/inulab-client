@@ -206,8 +206,12 @@
         @media (min-width: 1024px) {
             .app-content-dueno {
                 padding-top: calc(70px + env(safe-area-inset-top, 0px));
+                padding-bottom: 0;
                 overflow-y: auto;
                 height: 100vh;
+            }
+            .app-content-dueno .dueno-content-wrapper {
+                min-height: calc(100vh - 70px);
             }
             /* Cuando hay un visor PDF/Tracking activo (o Pedidos), el wrapper debe ocupar exactamente
                la altura disponible (debajo del header fijo de 70px) y no scrollear */
