@@ -223,7 +223,7 @@
             .app-content-dueno.pdf-active .dueno-content-wrapper {
                 height: calc(100vh - 70px);
                 min-height: calc(100vh - 70px);
-                overflow: hidden;
+                overflow: hidden !important;
                 padding-bottom: 0 !important;
             }
             /* Caja interior única para Pedidos PC dueño:
