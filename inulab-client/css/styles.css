@@ -172,6 +172,11 @@
         .app-content-breadcrumb {
             padding-top: calc(70px + env(safe-area-inset-top, 0px));
             min-height: 100vh;
+            /* Auto-scroll en pantallas bajas (mismo patron que .app-content-dueno)
+               para que el card de perfil (mas largo con contrasena) no se corte */
+            height: 100vh;
+            overflow-y: auto;
+            overscroll-behavior: none;
         }
         /* Para páginas con tabs (dueños) - aún más espacio */
         .app-content-with-tabs {
