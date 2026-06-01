@@ -548,6 +548,11 @@
             .app-content-dueno .text-base { font-size: 0.82rem !important; }
             .mob-content .text-sm,
             .app-content-dueno .text-sm { font-size: 0.76rem !important; }
+            /* Texto DENTRO de los inputs text-sm en movil (perfil dueno y demas)
+               igualado al resto de textos de la app. Solo movil: en desktop se
+               mantiene el 16px anti-zoom de iOS. input.text-sm (0,1,1) gana al
+               input{16px} global (0,0,1). */
+            input.text-sm, textarea.text-sm, select.text-sm { font-size: 0.76rem !important; }
             .mob-content .text-xs,
             .app-content-dueno .text-xs { font-size: 0.68rem !important; }
             /* Reduce internal padding on cards */
