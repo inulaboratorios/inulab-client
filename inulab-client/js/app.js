@@ -171,17 +171,15 @@ function inulabShowUpdateBanner(worker) {
   window.__inulabVerCheck = true;
 
   function sameOrigin(u){ try { return new URL(u, location.href).origin === location.origin; } catch(e){ return false; } }
-  function norm(u){ try { return new URL(u, location.href).href.split('#')[0].split('?')[0]; } catch(e){ return null; } }
+  function norm(u){ try { var x = new URL(u, location.href); if (!/^https?:$/.test(x.protocol)) return null; return x.href.split('#')[0].split('?')[0]; } catch(e){ return null; } }
 
   function watchList(){
     var set = {};
-    set[location.origin + location.pathname] = 1; // el documento (index.html)
-    set[location.origin + '/'] = 1;
+    set[location.origin + '/'] = 1; // el documento (index.html)
     var add = function(u){ if (u && sameOrigin(u)) { var n = norm(u); if (n) set[n] = 1; } };
     var i, els;
-    els = document.getElementsByTagName('script');  for (i=0;i<els.length;i++) add(els[i].src);
-    els = document.getElementsByTagName('link');     for (i=0;i<els.length;i++) add(els[i].href);
-    els = document.getElementsByTagName('img');      for (i=0;i<els.length;i++) add(els[i].src);
+    els = document.getElementsByTagName('script'); for (i=0;i<els.length;i++) add(els[i].src);
+    els = document.querySelectorAll('link[rel~="stylesheet"], link[rel~="icon"], link[rel~="manifest"], link[rel~="apple-touch-icon"]'); for (i=0;i<els.length;i++) add(els[i].href);
     return Object.keys(set);
   }
 
@@ -234,7 +232,6 @@ function inulabShowUpdateBanner(worker) {
   }
 
   function check(){
-    URLS = watchList(); // re-evaluar por si cambió el DOM
     fingerprint().then(function(fp){
       if (fp === null) return;                       // ronda con fallos de red → ignorar
       if (initialFp === null) { initialFp = fp; return; }
