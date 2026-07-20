@@ -96,7 +96,7 @@ const[resSearchTerm,setResSearchTerm]=useState('');const[resFilterDay,setResFilt
 const renderTermsCheckbox=()=>/*#__PURE__*/React.createElement("div",{className:"mb-4"},nightPickupInfo.aplica&&/*#__PURE__*/React.createElement("div",{className:"flex items-center justify-between bg-amber-50 border border-amber-200 rounded-xl px-3 py-2 mb-2"},/*#__PURE__*/React.createElement("span",{className:"text-xs text-amber-700 font-medium"},/*#__PURE__*/React.createElement("i",{className:"fas fa-moon mr-1.5"}),"Recargo por recojo nocturno"),/*#__PURE__*/React.createElement("span",{className:"text-sm font-bold text-amber-700"},"S/ ",nightPickupInfo.monto.toFixed(2))),nightPickupInfo.estado==="FUERA_DE_COBERTURA"&&/*#__PURE__*/React.createElement("div",{className:"bg-amber-50 border border-amber-200 rounded-xl px-3 py-2 mb-2 flex items-start gap-2"},/*#__PURE__*/React.createElement("i",{className:"fas fa-circle-info text-amber-600 mt-0.5 text-xs"}),/*#__PURE__*/React.createElement("p",{className:"text-xs text-amber-700"},"Tu distrito está fuera de cobertura. Te contactaremos por WhatsApp para coordinar el recojo y la tarifa.")),cartTotal>0&&/*#__PURE__*/React.createElement("div",{className:"bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl p-4 mb-3"},/*#__PURE__*/React.createElement("div",{className:"flex items-center justify-between"},/*#__PURE__*/React.createElement("span",{className:"text-sm font-medium text-gray-600"},/*#__PURE__*/React.createElement("i",{className:"fas fa-receipt text-cyan-500 mr-2"}),"Total estimado"),/*#__PURE__*/React.createElement("span",{className:"text-xl font-bold text-cyan-700"},"S/ ",cartTotalConRecargo.toFixed(2))),(cart||[]).some(i=>i.tomaMuestra)&&/*#__PURE__*/React.createElement("div",{className:"mt-2 flex items-start gap-2 text-xs text-emerald-700 bg-emerald-50 rounded-lg px-3 py-2"},/*#__PURE__*/React.createElement("i",{className:"fas fa-syringe text-emerald-500 mt-0.5"}),/*#__PURE__*/React.createElement("span",null,"Te contactaremos para coordinar y cotizar la toma de muestra.")),(TOMA_MUESTRA_COBRO_ACTIVO&&tomaMuestraFees>0)&&/*#__PURE__*/React.createElement("div",{className:"mt-2 pt-2 border-t border-cyan-200/50 flex items-center justify-between text-xs text-gray-500"},/*#__PURE__*/React.createElement("span",null,"Ex\xE1menes: S/ ",examTotal),/*#__PURE__*/React.createElement("span",{className:"text-emerald-600"},/*#__PURE__*/React.createElement("i",{className:"fas fa-syringe mr-1"}),"Toma de muestra: +S/ ",tomaMuestraFees))),/*#__PURE__*/React.createElement("label",{className:"flex items-start gap-3 cursor-pointer group",onClick:e=>e.stopPropagation()},/*#__PURE__*/React.createElement("input",{type:"checkbox",checked:termsAccepted,onChange:e=>setTermsAccepted(e.target.checked),className:"mt-1 w-4 h-4 rounded border-gray-300 text-cyan-500 focus:ring-cyan-500 cursor-pointer"}),/*#__PURE__*/React.createElement("span",{className:"text-xs text-gray-600 leading-relaxed"},"He le\xEDdo y acepto los ",/*#__PURE__*/React.createElement("button",{type:"button",onClick:e=>{e.preventDefault();e.stopPropagation();setShowTermsModal(true);},className:"text-cyan-600 font-semibold underline hover:text-cyan-700"},"t\xE9rminos y condiciones")," de entrega y procesamiento de muestras.")));// Vista de Términos y Condiciones DENTRO del card flotante PC.
 // Reemplaza el contenido del card cuando showTermsModal está activo.
 const renderTermsContentPC=()=>/*#__PURE__*/React.createElement(React.Fragment,null,/*#__PURE__*/React.createElement("div",{className:"bg-cyan-500 px-6 py-4 flex items-center justify-between flex-shrink-0 rounded-t-3xl"},/*#__PURE__*/React.createElement("div",{className:"flex items-center gap-3"},/*#__PURE__*/React.createElement("div",{className:"w-9 h-9 bg-white/20 rounded-lg flex items-center justify-center"},/*#__PURE__*/React.createElement("i",{className:"fas fa-file-contract text-white"})),/*#__PURE__*/React.createElement("h2",{className:"text-base font-bold text-white"},"T\xE9rminos y Condiciones")),/*#__PURE__*/React.createElement("button",{onClick:()=>setShowTermsModal(false),className:"w-9 h-9 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-colors"},/*#__PURE__*/React.createElement("i",{className:"fas fa-times text-sm"}))),/*#__PURE__*/React.createElement("div",{className:"flex-1 overflow-y-auto px-6 py-5"},/*#__PURE__*/React.createElement("div",{className:"max-w-2xl mx-auto"},freshUser?.type==='dueño'&&/*#__PURE__*/React.createElement("div",{className:"mb-6"},/*#__PURE__*/React.createElement("div",{className:"mb-3"},/*#__PURE__*/React.createElement("div",{className:"flex items-center gap-2 mb-3"},/*#__PURE__*/React.createElement("div",{className:"w-7 h-7 bg-emerald-100 rounded-lg flex items-center justify-center"},/*#__PURE__*/React.createElement("i",{className:"fas fa-syringe text-emerald-600",style:{fontSize:'11px'}})),/*#__PURE__*/React.createElement("h3",{className:"font-bold text-gray-800 text-sm"},"Para el caso de toma de muestra a domicilio")),/*#__PURE__*/React.createElement("p",{className:"text-xs text-gray-500 mb-2"},"Cuando necesitas que un profesional vaya a tu domicilio a tomar la muestra de tu mascota.")),/*#__PURE__*/React.createElement("div",{className:"space-y-2"},termsContent.tomaMuestra.map((item,i)=>/*#__PURE__*/React.createElement("div",{key:i,className:"flex gap-2"},/*#__PURE__*/React.createElement("span",{className:"w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5",style:{fontSize:'10px',fontWeight:'bold'}},i+1),/*#__PURE__*/React.createElement("p",{className:"text-xs text-gray-600 leading-relaxed text-justify",dangerouslySetInnerHTML:{__html:item}}))))),freshUser?.type==='dueño'&&/*#__PURE__*/React.createElement("div",{className:"mb-4"},/*#__PURE__*/React.createElement("div",{className:"border-t-2 border-cyan-200 pt-4"},/*#__PURE__*/React.createElement("div",{className:"flex items-center gap-2 mb-3"},/*#__PURE__*/React.createElement("div",{className:"w-7 h-7 bg-cyan-100 rounded-lg flex items-center justify-center"},/*#__PURE__*/React.createElement("i",{className:"fas fa-truck text-cyan-600",style:{fontSize:'11px'}})),/*#__PURE__*/React.createElement("h3",{className:"font-bold text-gray-800 text-sm"},"Para el caso de recojo de muestras")),/*#__PURE__*/React.createElement("p",{className:"text-xs text-gray-500 mb-2"},"Cuando ya tienes la muestra lista y solo necesitas que la recojamos."))),/*#__PURE__*/React.createElement("div",{className:"mb-6"},/*#__PURE__*/React.createElement("div",{className:"flex items-center gap-2 mb-3"},/*#__PURE__*/React.createElement("div",{className:"w-7 h-7 bg-blue-100 rounded-lg flex items-center justify-center"},/*#__PURE__*/React.createElement("i",{className:"fas fa-clipboard-list text-blue-600",style:{fontSize:'11px'}})),/*#__PURE__*/React.createElement("h3",{className:"font-bold text-gray-800 text-sm"},"Condiciones del Servicio")),/*#__PURE__*/React.createElement("div",{className:"space-y-2"},termsContent.notas.map((nota,i)=>/*#__PURE__*/React.createElement("div",{key:i,className:"flex gap-2"},/*#__PURE__*/React.createElement("span",{className:"w-5 h-5 bg-cyan-100 text-cyan-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5",style:{fontSize:'10px',fontWeight:'bold'}},i+1),/*#__PURE__*/React.createElement("p",{className:"text-xs text-gray-600 leading-relaxed text-justify"},nota))))),/*#__PURE__*/React.createElement("div",{className:"mb-6"},/*#__PURE__*/React.createElement("div",{className:"flex items-center gap-2 mb-3"},/*#__PURE__*/React.createElement("div",{className:"w-7 h-7 bg-amber-100 rounded-lg flex items-center justify-center"},/*#__PURE__*/React.createElement("i",{className:"fas fa-exclamation-triangle text-amber-600",style:{fontSize:'11px'}})),/*#__PURE__*/React.createElement("h3",{className:"font-bold text-gray-800 text-sm"},"Tener en Cuenta")),/*#__PURE__*/React.createElement("div",{className:"space-y-2"},termsContent.tenerEnCuenta.map((item,i)=>/*#__PURE__*/React.createElement("div",{key:i,className:"flex gap-2"},/*#__PURE__*/React.createElement("span",{className:"w-5 h-5 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"},/*#__PURE__*/React.createElement("i",{className:"fas fa-info",style:{fontSize:'8px'}})),/*#__PURE__*/React.createElement("p",{className:"text-xs text-gray-600 leading-relaxed text-justify"},item))))),/*#__PURE__*/React.createElement("div",{className:"bg-gray-50 rounded-xl p-3 text-center"},/*#__PURE__*/React.createElement("p",{style:{fontSize:'10px'},className:"text-gray-500 mb-0.5"},/*#__PURE__*/React.createElement("i",{className:"fas fa-map-marker-alt text-cyan-500 mr-1"}),"Alameda del Sereno 495, La Alborada - Santiago de Surco, Lima"),/*#__PURE__*/React.createElement("p",{style:{fontSize:'10px'},className:"text-gray-500"},/*#__PURE__*/React.createElement("i",{className:"fas fa-phone text-cyan-500 mr-1"}),"954 904 248 \xB7 ",/*#__PURE__*/React.createElement("i",{className:"fas fa-envelope text-cyan-500 ml-2 mr-1"}),"lab@inulaboratorios.com")))),/*#__PURE__*/React.createElement("div",{className:"px-6 py-4 border-t bg-white flex-shrink-0 rounded-b-3xl"},/*#__PURE__*/React.createElement("button",{onClick:()=>{setTermsAccepted(true);setShowTermsModal(false);},className:"w-full bg-cyan-500 hover:bg-cyan-600 text-white py-3 rounded-xl font-semibold text-sm shadow-lg"},/*#__PURE__*/React.createElement("i",{className:"fas fa-check-circle mr-2"}),"He le\xEDdo y acepto")));const[medicoView,setMedicoView]=useState('inicio');// inicio, pedidos, mascotas, resultados, facturacion
-const[resultadosSearch,setResultadosSearch]=useState('');const[resultadosFilterDay,setResultadosFilterDay]=useState('');const[resultadosFilterMonth,setResultadosFilterMonth]=useState('');const[resultadosFilterYear,setResultadosFilterYear]=useState('');const[medicoFacSubTab,setMedicoFacSubTab]=useState('entregadas');const[facturacionSearch,setFacturacionSearch]=useState('');const[facturacionInvoice,setFacturacionInvoice]=useState(null);const[medicoFacInvoice,setMedicoFacInvoice]=useState(null);const[facturacionFilterDay,setFacturacionFilterDay]=useState('');const[facturacionFilterMonth,setFacturacionFilterMonth]=useState('');const[facturacionFilterYear,setFacturacionFilterYear]=useState('');const[clinPedidosSearchOpen,setClinPedidosSearchOpen]=useState(false);const[clinMascSearchOpen,setClinMascSearchOpen]=useState(false);const[clinResSearchOpen,setClinResSearchOpen]=useState(false);const[clinFacSearchOpen,setClinFacSearchOpen]=useState(false);const[clinMascDetailSearchOpen,setClinMascDetailSearchOpen]=useState(false);// Función de actualización de estado local (el backend es la fuente de verdad)
+const[resultadosSearch,setResultadosSearch]=useState('');const[resultadosFilterDay,setResultadosFilterDay]=useState('');const[resultadosFilterMonth,setResultadosFilterMonth]=useState('');const[resultadosFilterYear,setResultadosFilterYear]=useState('');const[medicoFacSubTab,setMedicoFacSubTab]=useState('entregadas');const[facturacionSearch,setFacturacionSearch]=useState('');const[facturacionInvoice,setFacturacionInvoice]=useState(null);const[medicoFacInvoice,setMedicoFacInvoice]=useState(null);const[facturacionFilterDay,setFacturacionFilterDay]=useState('');const[facturacionFilterMonth,setFacturacionFilterMonth]=useState('');const[facturacionFilterYear,setFacturacionFilterYear]=useState('');const[clinPedidosSearchOpen,setClinPedidosSearchOpen]=useState(false);const[clinMascSearchOpen,setClinMascSearchOpen]=useState(false);const[clinResSearchOpen,setClinResSearchOpen]=useState(false);const[clinFacSearchOpen,setClinFacSearchOpen]=useState(false);const[clinMascDetailSearchOpen,setClinMascDetailSearchOpen]=useState(false);const[_catalogTick,_setCatalogTick]=useState(0);useEffect(()=>{const _h=()=>_setCatalogTick(t=>t+1);window.addEventListener('inulab:catalog-refreshed',_h);return()=>window.removeEventListener('inulab:catalog-refreshed',_h);},[]);// Función de actualización de estado local (el backend es la fuente de verdad)
 const saveDatabase=newDbOrFn=>{if(typeof newDbOrFn==='function'){setDatabase(prev=>{const result=newDbOrFn(prev);return result;});}else{setDatabase(newDbOrFn);}};const getCurrentNightMode=()=>database?.nightMode||false;// Toggle modo motorizado
 // Componente de Mapa de Tracking
 const TrackingMapComponent=({orderId})=>{const mapRef=React.useRef(null);const mapInstanceRef=React.useRef(null);const motoMarkerRef=React.useRef(null);const simulationRef=React.useRef(null);const currentIndexRef=React.useRef(0);const[eta,setEta]=useState('8');const[dist,setDist]=useState('2.3');const routePoints=[[-12.0564,-77.0528],[-12.0544,-77.0508],[-12.0524,-77.0488],[-12.0504,-77.0468],[-12.0484,-77.0448],[-12.0464,-77.0428]];const destination=[-12.0464,-77.0428];const calcDist=(p1,p2)=>{const R=6371;const dLat=(p2[0]-p1[0])*Math.PI/180;const dLon=(p2[1]-p1[1])*Math.PI/180;const a=Math.sin(dLat/2)**2+Math.cos(p1[0]*Math.PI/180)*Math.cos(p2[0]*Math.PI/180)*Math.sin(dLon/2)**2;return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));};useEffect(()=>{if(mapRef.current&&!mapInstanceRef.current){const map=L.map(mapRef.current,{zoomControl:false,attributionControl:false}).setView([-12.0514,-77.0478],14);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);L.marker(destination,{icon:L.divIcon({html:'<div class="dest-marker-icon">🏠</div>',className:'',iconSize:[30,30],iconAnchor:[15,30]})}).addTo(map);const motoMarker=L.marker(routePoints[0],{icon:L.divIcon({html:'<div class="moto-marker-icon moto-animating">🛵</div>',className:'',iconSize:[35,35],iconAnchor:[17,17]})}).addTo(map);motoMarkerRef.current=motoMarker;L.polyline(routePoints,{color:'#0891b2',weight:4,opacity:0.7,dashArray:'8, 8'}).addTo(map);map.fitBounds(L.latLngBounds(routePoints),{padding:[30,30]});mapInstanceRef.current=map;setTimeout(()=>{simulationRef.current=setInterval(()=>{if(currentIndexRef.current<routePoints.length-1){currentIndexRef.current++;const p=routePoints[currentIndexRef.current];motoMarkerRef.current?.setLatLng(p);mapInstanceRef.current?.panTo(p,{animate:true,duration:0.5});const d=calcDist(p,destination);setDist(d.toFixed(1));setEta(Math.max(1,Math.ceil(d*4)));if(currentIndexRef.current===routePoints.length-1){clearInterval(simulationRef.current);setEta('0');setDist('0');}}},3000);},1000);}return()=>{if(simulationRef.current)clearInterval(simulationRef.current);};},[]);return/*#__PURE__*/React.createElement("div",{className:"mt-3"},/*#__PURE__*/React.createElement("div",{className:"rounded-2xl overflow-hidden shadow-lg"},/*#__PURE__*/React.createElement("div",{ref:mapRef,className:"tracking-map"})),/*#__PURE__*/React.createElement("div",{className:"mt-3 grid grid-cols-2 gap-2"},/*#__PURE__*/React.createElement("div",{className:"bg-cyan-50 rounded-xl p-3 text-center"},/*#__PURE__*/React.createElement("p",{className:"text-xs text-cyan-600 font-medium"},"Tiempo estimado"),/*#__PURE__*/React.createElement("p",{className:"text-xl font-bold text-cyan-700"},eta," min")),/*#__PURE__*/React.createElement("div",{className:"bg-blue-50 rounded-xl p-3 text-center"},/*#__PURE__*/React.createElement("p",{className:"text-xs text-blue-600 font-medium"},"Distancia"),/*#__PURE__*/React.createElement("p",{className:"text-xl font-bold text-blue-700"},dist," km"))),/*#__PURE__*/React.createElement("div",{className:"mt-3 bg-gradient-to-r from-cyan-50 to-blue-50 border border-cyan-200 rounded-xl p-3"},/*#__PURE__*/React.createElement("div",{className:"flex items-center gap-3"},/*#__PURE__*/React.createElement("div",{className:"w-11 h-11 bg-white rounded-full flex items-center justify-center shadow-sm text-xl"},"\uD83D\uDC68\u200D\u2695\uFE0F"),/*#__PURE__*/React.createElement("div",{className:"flex-1"},/*#__PURE__*/React.createElement("p",{className:"font-semibold text-gray-800 text-sm"},"Aaron Sanchez"),/*#__PURE__*/React.createElement("p",{className:"text-xs text-gray-500"},"Motorizado \u2022 \uD83D\uDEF5 ABC-123")),/*#__PURE__*/React.createElement("a",{href:"tel:+51999555666",className:"w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-white shadow-lg"},/*#__PURE__*/React.createElement("i",{className:"fas fa-phone text-sm"})))));};// Componente de Mapa de Tracking para Admin (incluye ruta de regreso)
@@ -263,8 +263,19 @@ function inulabShowUpdateBanner(worker) {
       });
   }
 
-  function showBanner(){
-    if (shown || document.getElementById('inulab-newver')) return;
+  // NUEVO — reason: 'files' (código nuevo, requiere reload completo) o
+  // 'catalog' (solo cambió un precio/examen; se refresca en caliente sin
+  // perder el carrito del cliente).
+  function showBanner(reason){
+    reason = reason || 'files';
+    var existing = document.getElementById('inulab-newver');
+    if (existing) {
+      // Si ya está visible y ahora también hay cambio de archivos, un
+      // reload completo cubre ambos casos — sube de prioridad a 'files'.
+      if (reason === 'files') existing.dataset.reason = 'files';
+      return;
+    }
+    if (shown && reason !== 'files') return;
     shown = true;
     if (timer) { clearInterval(timer); timer = null; }
 
@@ -274,6 +285,7 @@ function inulabShowUpdateBanner(worker) {
 
     var b = document.createElement('div');
     b.id = 'inulab-newver';
+    b.dataset.reason = reason;
     b.setAttribute('style', 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:2147483647;display:flex;align-items:center;gap:13px;background:#ffffff;border:1px solid #e5e7eb;box-shadow:0 12px 34px rgba(2,132,199,.20);border-radius:9999px;padding:10px 12px 10px 18px;font-family:inherit;max-width:calc(100vw - 24px);animation:inulabNewverIn .35s ease;');
     b.innerHTML =
       '<span style="display:inline-flex;width:9px;height:9px;border-radius:50%;background:#06b6d4;flex:none;box-shadow:0 0 0 4px rgba(6,182,212,.18)"></span>' +
@@ -283,7 +295,26 @@ function inulabShowUpdateBanner(worker) {
     document.body.appendChild(b);
 
     document.getElementById('inulab-newver-btn').onclick = function(){
-      var btn = this; btn.disabled = true; btn.textContent = 'Actualizando\u2026';
+      var btn = this; btn.disabled = true;
+
+      // NUEVO — si el aviso es solo por catálogo (precio/examen cambiado
+      // desde staff), NO recargamos la página completa: eso borraría el
+      // carrito del cliente. En vez de eso, volvemos a pedir /Precios en
+      // caliente y avisamos a React que se refresque.
+      if (b.dataset.reason === 'catalog' && typeof window.__inulabRefreshCatalog === 'function') {
+        btn.textContent = 'Actualizando precios\u2026';
+        window.__inulabRefreshCatalog().then(function(){
+          if (b.parentNode) b.parentNode.removeChild(b);
+          shown = false;
+        }).catch(function(){
+          if (b.parentNode) b.parentNode.removeChild(b);
+          shown = false;
+        });
+        return;
+      }
+
+      // Aviso por archivos (código nuevo) → sí conviene recargar todo.
+      btn.textContent = 'Actualizando\u2026';
       var done = function(){ try { location.reload(); } catch(e){ location.href = location.href; } };
       try {
         if (window.caches && caches.keys) {
@@ -291,24 +322,75 @@ function inulabShowUpdateBanner(worker) {
         } else { done(); }
       } catch(e){ done(); }
     };
-    document.getElementById('inulab-newver-x').onclick = function(){ if (b.parentNode) b.parentNode.removeChild(b); };
+    document.getElementById('inulab-newver-x').onclick = function(){ if (b.parentNode) b.parentNode.removeChild(b); shown = false; };
   }
+
+  // Exponer para que el chequeo de versión de catálogo (bloque de abajo)
+  // pueda disparar el mismo banner.
+  window.__inulabShowUpdateBanner = showBanner;
 
   function check(){
     fingerprint().then(function(fp){
       if (fp === null) return;                       // ronda con fallos de red → ignorar
       if (initialFp === null) { initialFp = fp; return; }
-      if (fp !== initialFp && !shown) showBanner();
+      if (fp !== initialFp) showBanner('files');
     });
   }
 
   function start(){
     check(); // captura la huella inicial
     timer = setInterval(check, 60000); // revisa cada 60s
-    document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'visible' && !shown) check(); });
-    window.addEventListener('focus', function(){ if (!shown) check(); });
+    document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'visible') check(); });
+    window.addEventListener('focus', function(){ check(); });
   }
 
   if (document.body) start();
   else window.addEventListener('DOMContentLoaded', start);
+})();
+
+// ============================================================
+// NUEVO — INULAB · Detector de cambios en el CATÁLOGO (precios/exámenes)
+// Consulta GET /api/Catalog/version cada 60s + al volver a la pestaña.
+// Si la versión subió, dispara el MISMO banner de arriba, marcado como
+// 'catalog' para que el botón "Actualizar" no recargue toda la página.
+// ============================================================
+(function(){
+  if (window.__inulabCatalogVerCheck) return;
+  window.__inulabCatalogVerCheck = true;
+
+  var lastVersion = null;
+
+  function fetchVersion(){
+    return fetch(API_HOST + '/api/Catalog/version?_=' + Date.now(), { cache: 'no-store' })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(data){ return data ? String(data.version) : null; })
+      .catch(function(){ return null; });
+  }
+
+  function check(){
+    fetchVersion().then(function(v){
+      if (v === null) return; // falló la red → ignorar esta ronda
+      if (lastVersion === null) { lastVersion = v; return; }
+      if (v !== lastVersion) {
+        lastVersion = v;
+        if (typeof window.__inulabShowUpdateBanner === 'function') {
+          window.__inulabShowUpdateBanner('catalog');
+        }
+      }
+    });
+  }
+
+  // NUEVO — función que el botón "Actualizar" del banner llama cuando el
+  // aviso fue por catálogo: vuelve a pedir /Precios y avisa a React.
+  window.__inulabRefreshCatalog = function(){
+    return (typeof cargarPreciosDesdeAPI === 'function' ? cargarPreciosDesdeAPI() : Promise.resolve())
+      .then(function(){
+        window.dispatchEvent(new Event('inulab:catalog-refreshed'));
+      });
+  };
+
+  check();
+  setInterval(check, 60000);
+  document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'visible') check(); });
+  window.addEventListener('focus', check);
 })();
